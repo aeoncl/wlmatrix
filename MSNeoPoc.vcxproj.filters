@@ -25,6 +25,12 @@
     <Filter Include="Fichiers d%27en-tête\Exceptions">
       <UniqueIdentifier>{d95f7384-49d3-476f-8f43-a03da12d0876}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Utils">
+      <UniqueIdentifier>{55e897d1-19bb-49b7-a985-3fa4a66d0212}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Utils">
+      <UniqueIdentifier>{8d3e705c-f36e-4c8a-a926-f5b1e7b9c032}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MSNeoPoc.cpp">
@@ -36,6 +42,12 @@
     <ClCompile Include="SocketServerException.cpp">
       <Filter>Fichiers sources\Exceptions</Filter>
     </ClCompile>
+    <ClCompile Include="MSNClient.cpp">
+      <Filter>Fichiers sources\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="StringUtils.cpp">
+      <Filter>Fichiers sources\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SocketServer.h">
@@ -43,6 +55,12 @@
     </ClInclude>
     <ClInclude Include="SocketServerException.h">
       <Filter>Fichiers d%27en-tête\Exceptions</Filter>
+    </ClInclude>
+    <ClInclude Include="MSNClient.h">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="StringUtils.h">
+      <Filter>Fichiers d%27en-tête\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

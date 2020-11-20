@@ -13,6 +13,21 @@ SocketServer::SocketServer(int port) {
 	}
 }
 
+/* Copystructor */
+SocketServer::SocketServer(const SocketServer& obj) {
+	std::cout << "Copying SocketServer\n";
+	this->_port = obj._port;
+	this->_listenSocket = obj._listenSocket;
+}
+
+/* Destructor */
+SocketServer::~SocketServer() {
+	std::cout << "Destroying SocketServer\n";
+	this->stop();
+	closesocket(_listenSocket);
+	WSACleanup();
+}
+
 /* Private methods */
 void SocketServer::createServer() {
 	try {
@@ -50,7 +65,6 @@ addrinfo* SocketServer::getAddressInfo() {
 	std::string portAsString = std::to_string(this->_port);
 	int addrStatus = getaddrinfo(NULL, portAsString.c_str(), &hints, &result);
 	if (addrStatus != 0) {
-		WSACleanup();
 		throw SocketServerException("GetAddressInfo - failed: " + addrStatus);
 	}
 	return result;
@@ -59,7 +73,6 @@ addrinfo* SocketServer::getAddressInfo() {
 void SocketServer::createSocket(addrinfo* result) {
 	this->_listenSocket = socket(result->ai_family, result->ai_socktype, result->ai_protocol);
 	if (_listenSocket == INVALID_SOCKET) {
-		WSACleanup();
 		freeaddrinfo(result);
 		throw SocketServerException("CreateSocket - error at socket(): " + WSAGetLastError());
 	}
@@ -69,32 +82,36 @@ void SocketServer::bindSocket(addrinfo* result) {
 	int bindStatus = bind(this->_listenSocket, result->ai_addr, (int)result->ai_addrlen);
 	if (_listenSocket == INVALID_SOCKET) {
 		freeaddrinfo(result);
-		closesocket(_listenSocket);
-		WSACleanup();
 		throw SocketServerException("BindSocket - bind failed with error : " + WSAGetLastError());
 	}
-};
+}
 
 int SocketServer::listen(SOCKET listenSocket) {
 	if (::listen(listenSocket, SOMAXCONN) == SOCKET_ERROR) {
+		std::cerr << "Listen - listen failed: " << WSAGetLastError();
 		return -1;
 	}
-	SOCKET ClientSocket = INVALID_SOCKET;
+	SOCKET clientSocket = INVALID_SOCKET;
 
 	while (isListening()) {
 		// Accept a client socket
-		ClientSocket = accept(listenSocket, NULL, NULL);
+		clientSocket = accept(listenSocket, NULL, NULL);
 
-		if (ClientSocket == INVALID_SOCKET) {
-			std::cout << "Listen - accept failed: " << WSAGetLastError();
+		if (clientSocket != INVALID_SOCKET) {
+			std::cout << "Client connected successfully\n";
+			std::thread([this, clientSocket] { handleClient(clientSocket); }).detach();
 		}
 		else {
-			std::cout << "Client connected successfully\n";
+			std::cerr << "Listen - accept failed: " << WSAGetLastError();
 		}
-		//TODO start a new thread to handle the client socket
 		Sleep(1000);
 	}
 	return 0;
+}
+
+void SocketServer::handleClient(SOCKET socket) {
+	auto client = MSNClient(socket);
+	client.listen();
 }
 
 /* Public methods */
@@ -118,20 +135,5 @@ void SocketServer::listenAsync() {
 
 void SocketServer::stop() {
 	this->_listening.store(false);
-}
-
-/* Copystructor */
-SocketServer::SocketServer(const SocketServer &obj) {
-	std::cout << "Copying SocketServer\n";
-	this->_port = obj._port;
-	this->_listenSocket = obj._listenSocket;
-}
-
-/* Destructor */
-SocketServer::~SocketServer() {
-	std::cout << "Destroying SocketServer\n";
-	this->stop();
-	closesocket(_listenSocket);
-	WSACleanup();
 }
 

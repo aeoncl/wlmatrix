@@ -20,9 +20,8 @@ int main()
         char test[20];
         std::cin.getline(test, 20);
     }catch (SocketServerException& e) {
-        std::cout << "Unable to create server on port " << DEFAULT_PORT << " : " << e.what() << "\n";
+        std::cerr << "Unable to create server on port " << DEFAULT_PORT << " : " << e.what() << "\n";
     }
-
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
