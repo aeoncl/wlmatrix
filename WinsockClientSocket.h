@@ -5,14 +5,14 @@
 
 #define DEFAULT_BUFLEN 512
 
-class WinsockClientSocket : public IClientSocket {
+class WinSockClientSocket : public IClientSocket {
 	private :
 		SOCKET _socket;
 		std::atomic_bool _listening;
 	public : 
-		WinsockClientSocket(SOCKET socket) : _socket(socket) {};
-		WinsockClientSocket(const WinsockClientSocket& obj);
-		~WinsockClientSocket();
+		WinSockClientSocket(SOCKET socket) : _socket(socket) {};
+		WinSockClientSocket(const WinSockClientSocket& obj);
+		~WinSockClientSocket();
 		void send(std::string) override;
 		void receive(std::function<void(std::string)> callback) override;
 		bool isListening() override;

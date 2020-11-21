@@ -1,4 +1,4 @@
-#include "SocketServer.h"
+#include "MSNServer.h"
 #include <string>
 #include "WinSockSocket.h"
 #include "ISocket.h"
@@ -7,38 +7,39 @@
 #pragma comment(lib, "Ws2_32.lib")
 
 /* Constructor */
-SocketServer::SocketServer(int port) {
+MSNServer::MSNServer(int port) {
+	//TODO get the handshake interpreter from the factory
 	this->_port = port;
 	this->_listenSocket = new WinSockSocket(port);
 }
 
 /* Copystructor */
-SocketServer::SocketServer(const SocketServer& obj) {
+MSNServer::MSNServer(const MSNServer& obj) {
 	std::cout << "Copying SocketServer\n";
 	this->_port = obj._port;
 	this->_listenSocket = obj._listenSocket;
 }
 
 /* Destructor */
-SocketServer::~SocketServer() {
+MSNServer::~MSNServer() {
 	std::cout << "Destroying SocketServer\n";
 	delete(_listenSocket);
 }
 
-void SocketServer::listen() {
+void MSNServer::listen() {
 	std::cout << "Server listening on port: " << _port << "\n";
-	this->_listenSocket->listen(std::bind(&SocketServer::onClientConnected, this, std::placeholders::_1));
+	this->_listenSocket->listen(std::bind(&MSNServer::onClientConnected, this, std::placeholders::_1));
 }
 
 /* Callback */
-void SocketServer::onClientConnected(IClientSocket* clientSocket) {
+void MSNServer::onClientConnected(IClientSocket* clientSocket) {
 	//create a thread per connected clients
-	std::cout << "Client connected callback!\n";
+	std::cout << "Client connected successfully!\n";
 	std::thread thread([this, clientSocket] {handleClient(clientSocket); });
 	thread.detach();
 }
 
-void SocketServer::handleClient(IClientSocket* socket) {
+void MSNServer::handleClient(IClientSocket* socket) {
 	//ran in another thread
 	std::cout << "Started Client thread.\n";
 	std::shared_ptr<MSNClient> client = std::make_shared<MSNClient>(socket);
@@ -46,10 +47,10 @@ void SocketServer::handleClient(IClientSocket* socket) {
 	client->listen();
 	//when the client don't listen anymore
 	eraseClient(client);
-	std::cout << "clients size : " << _clients.size() << "\n";
+	std::cout << "Clients count : " << _clients.size() << "\n";
 }
 
-void SocketServer::eraseClient(std::shared_ptr<MSNClient> client) {
+void MSNServer::eraseClient(std::shared_ptr<MSNClient> client) {
 	auto findResult = std::find(_clients.begin(), _clients.end(), client);
 	if (findResult != _clients.end()) {
 		//found

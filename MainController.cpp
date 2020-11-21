@@ -1,6 +1,6 @@
 #include "MainController.h"
 #include <thread>
-#include "SocketServer.h"
+#include "MSNServer.h"
 /* Constructor */
 MainController::MainController() {
 	std::thread thread([this] {createMSNPServer(); });
@@ -11,6 +11,6 @@ MainController::MainController() {
 void MainController::createMSNPServer() {
 	//ran in another thread
 	std::cout << "Creating MSNP Server thread.\n";
-	SocketServer serv(1863);
+	MSNServer serv(1863);
 	serv.listen();
 }

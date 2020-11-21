@@ -24,31 +24,6 @@ WinSockSocket::~WinSockSocket() {
 	WSACleanup();
 }
 
-
-void WinSockSocket::listen(std::function<void(IClientSocket*)> callback) {
-	if (::listen(_listenSocket, SOMAXCONN) == SOCKET_ERROR) {
-		std::cerr << "Listen - listen failed: " << WSAGetLastError();
-		return;
-	}
-	SOCKET clientSocket = INVALID_SOCKET;
-	this->_listening.store(true);
-
-	while (isListening()) {
-		// Accept a client socket
-		clientSocket = accept(_listenSocket, NULL, NULL);
-
-		if (clientSocket != INVALID_SOCKET) {
-			std::cout << "Client connected successfully\n";
-			callback(new WinsockClientSocket(clientSocket));
-		}
-		else {
-			std::cerr << "Listen - accept failed: " << WSAGetLastError();
-		}
-		Sleep(1000);
-	}
-	return;
-}
-
 /* Private methods */
 void WinSockSocket::createSocket() {
 	try {
@@ -112,5 +87,28 @@ bool WinSockSocket::isListening() {
 	return this->_listening.load();
 }
 
+
+void WinSockSocket::listen(std::function<void(IClientSocket*)> callback) {
+	if (::listen(_listenSocket, SOMAXCONN) == SOCKET_ERROR) {
+		std::cerr << "Listen - listen failed: " << WSAGetLastError();
+		return;
+	}
+	SOCKET clientSocket = INVALID_SOCKET;
+	this->_listening.store(true);
+
+	while (isListening()) {
+		// Accept a client socket
+		clientSocket = accept(_listenSocket, NULL, NULL);
+
+		if (clientSocket != INVALID_SOCKET) {
+			callback(new WinSockClientSocket(clientSocket));
+		}
+		else {
+			std::cerr << "Listen - accept failed: " << WSAGetLastError();
+		}
+		Sleep(1000);
+	}
+	return;
+}
 
 

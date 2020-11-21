@@ -5,7 +5,7 @@
 #include <deque>
 #include "MSNClient.h"
 #include "SocketServerException.h"
-class SocketServer {
+class MSNServer {
 private:
 	int _port;
 	ISocket* _listenSocket;
@@ -14,8 +14,8 @@ private:
 	void onClientConnected(IClientSocket* clientSocket);
 	void eraseClient(std::shared_ptr<MSNClient> client);
 public:
-	SocketServer(int port);
-	SocketServer(const SocketServer& obj);
-	~SocketServer();
+	MSNServer(int port);
+	MSNServer(const MSNServer& obj);
+	~MSNServer();
 	void listen();
 };

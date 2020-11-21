@@ -18,7 +18,7 @@ std::vector<std::string> StringUtils::splitLines(std::string& string)
 	return split(string, '\n');
 }
 
-std::string StringUtils::getStringForShittyBuffer(char chars[], int arrayLength) {
-	chars[arrayLength] = '\0';
+std::string StringUtils::getStringForShittyBuffer(char chars[], int messageLength) {
+	chars[messageLength] = '\0';
 	return std::string(chars);
 }

@@ -1,21 +1,21 @@
-#include "WinsockClientSocket.h"
+#include "WinSockClientSocket.h"
 #include "StringUtils.h"
 #include <iostream>
 
-WinsockClientSocket::~WinsockClientSocket() {
+WinSockClientSocket::~WinSockClientSocket() {
 	closesocket(this->_socket);
     std::cout << "Destroyed WinsockClientSocket.\n";
 }
 
-void WinsockClientSocket::send(std::string) {
+void WinSockClientSocket::send(std::string) {
 
 }
 
-WinsockClientSocket::WinsockClientSocket(const WinsockClientSocket& obj) {
+WinSockClientSocket::WinSockClientSocket(const WinSockClientSocket& obj) {
     this->_socket = obj._socket;
 }
 
-void WinsockClientSocket::receive(std::function<void(std::string)> callback) {
+void WinSockClientSocket::receive(std::function<void(std::string)> callback) {
     this->_listening.store(true);
     char recvbuf[DEFAULT_BUFLEN];
     int iResult, iSendResult;
@@ -45,7 +45,7 @@ void WinsockClientSocket::receive(std::function<void(std::string)> callback) {
     } while (iResult > 0 && isListening());
 }
 
-bool WinsockClientSocket::isListening()
+bool WinSockClientSocket::isListening()
 {
     return this->_listening.load();
 }
