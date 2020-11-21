@@ -12,4 +12,4 @@ The goal is to turn WLM2009 into a Matrix client.
 	- Serialize & Deserialize JSON and XML (this is my first c++ project so if i can avoid libs & reinvent the wheel i will)
 	- Translate MSNP to Matrix & Back
 	- Making all of this while not being a tangle mess of everlasting classes :'(
-4. Having fun.
+4. Having fun while doing all of the above.
