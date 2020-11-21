@@ -31,6 +31,15 @@
     <Filter Include="Fichiers sources\Utils">
       <UniqueIdentifier>{8d3e705c-f36e-4c8a-a926-f5b1e7b9c032}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Controllers">
+      <UniqueIdentifier>{db19c530-20bf-49ad-8bdb-53881b45d1f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Controllers">
+      <UniqueIdentifier>{aa89ccb3-bfa7-4321-bd52-7c756816fb43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Sockets">
+      <UniqueIdentifier>{86268db8-9082-4027-b63c-d62513e8efce}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MSNeoPoc.cpp">
@@ -48,6 +57,15 @@
     <ClCompile Include="StringUtils.cpp">
       <Filter>Fichiers sources\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="WinSockSocket.cpp">
+      <Filter>Fichiers sources\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="MainController.cpp">
+      <Filter>Fichiers sources\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="WinsockClientSocket.cpp">
+      <Filter>Fichiers sources\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SocketServer.h">
@@ -61,6 +79,21 @@
     </ClInclude>
     <ClInclude Include="StringUtils.h">
       <Filter>Fichiers d%27en-tête\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="MainController.h">
+      <Filter>Fichiers d%27en-tête\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="ISocket.h">
+      <Filter>Fichiers d%27en-tête\Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="IClientSocket.h">
+      <Filter>Fichiers d%27en-tête\Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="WinsockClientSocket.h">
+      <Filter>Fichiers d%27en-tête\Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="WinSockSocket.h">
+      <Filter>Fichiers d%27en-tête\Sockets</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -141,17 +141,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MainController.cpp" />
     <ClCompile Include="MSNClient.cpp" />
     <ClCompile Include="SocketServerException.cpp" />
     <ClCompile Include="MSNeoPoc.cpp" />
     <ClCompile Include="SocketServer.cpp" />
     <ClCompile Include="StringUtils.cpp" />
+    <ClCompile Include="WinsockClientSocket.cpp" />
+    <ClCompile Include="WinSockSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="IClientSocket.h" />
+    <ClInclude Include="ISocket.h" />
+    <ClInclude Include="MainController.h" />
     <ClInclude Include="MSNClient.h" />
     <ClInclude Include="SocketServer.h" />
     <ClInclude Include="SocketServerException.h" />
     <ClInclude Include="StringUtils.h" />
+    <ClInclude Include="WinsockClientSocket.h" />
+    <ClInclude Include="WinSockSocket.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

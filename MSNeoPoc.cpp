@@ -4,24 +4,15 @@
 #ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
 #endif
-#define DEFAULT_PORT 1863
 
-
-#include "SocketServer.h"
-#include "SocketServerException.h"
-#include <stdio.h>
+#include "MainController.h"
+#include <iostream>
 #pragma comment(lib, "Ws2_32.lib")
 int main()
 {
-    std::cout << "Starting main MSNPServer\n";
-    try {
-        SocketServer serv(DEFAULT_PORT);
-        serv.listenAsync();
+        MainController();
         char test[20];
         std::cin.getline(test, 20);
-    }catch (SocketServerException& e) {
-        std::cerr << "Unable to create server on port " << DEFAULT_PORT << " : " << e.what() << "\n";
-    }
 }
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
