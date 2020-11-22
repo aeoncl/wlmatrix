@@ -81,6 +81,15 @@
     <ClCompile Include="MSNP18.cpp">
       <Filter>Fichiers sources\Models\MSNInterpreters</Filter>
     </ClCompile>
+    <ClCompile Include="ClientRepository.cpp">
+      <Filter>Fichiers sources\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="MSNSwitchboard.cpp">
+      <Filter>Fichiers sources\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="MSNPInterpreterFactory.cpp">
+      <Filter>Fichiers sources\Models\MSNInterpreters</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SocketServerException.h">
@@ -121,6 +130,12 @@
     </ClInclude>
     <ClInclude Include="MSNPInterpreterFactory.h">
       <Filter>Fichiers d%27en-tête\Models\MSNInterpreters</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientRepository.h">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="MSNSwitchboard.h">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

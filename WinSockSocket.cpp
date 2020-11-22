@@ -3,6 +3,7 @@
 #include <iostream>
 #include "SocketServerException.h"
 #include <WS2tcpip.h>
+#pragma comment(lib, "Ws2_32.lib")
 
 /* Constructor */
 WinSockSocket::WinSockSocket(int port) {
@@ -19,7 +20,7 @@ WinSockSocket::WinSockSocket(const WinSockSocket& obj) {
 
 /* Destructor */
 WinSockSocket::~WinSockSocket() {
-	std::cout << "Destroying winsock socket on port " << _port << "\n";
+	std::cout << "Destroying winsock socket on port " << _port << std::endl;
 	closesocket(_listenSocket);
 	WSACleanup();
 }

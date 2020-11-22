@@ -2,6 +2,8 @@
 #include "IMSNPInterpreter.h"
 class MSNPHandshake : public IMSNPInterpreter {
 	public :
-		std::string interpretMessage(std::string message) override;	
+		MSNPHandshake();
+		~MSNPHandshake();
+		std::string interpretMessage(std::string message, MSNClient& client) const override;
 };
 

@@ -1,9 +1,13 @@
 #include "MSNP18.h"
-
-std::string MSNP18::interpretMessage(std::string message) {
-
+#include "MSNClient.h"
 
 
-	//TODO
-	return std::string();
+MSNP18::MSNP18(){
+}
+
+MSNP18::~MSNP18(){
+}
+
+std::string MSNP18::interpretMessage(std::string message, MSNClient& client) const {
+	return "REPONSE_DE_MERDE";
 }

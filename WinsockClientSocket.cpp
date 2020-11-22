@@ -1,14 +1,22 @@
 #include "WinSockClientSocket.h"
 #include "StringUtils.h"
 #include <iostream>
+#pragma comment(lib, "Ws2_32.lib")
 
 WinSockClientSocket::~WinSockClientSocket() {
 	closesocket(this->_socket);
-    std::cout << "Destroyed WinsockClientSocket.\n";
+    std::cout << "Destroyed WinsockClientSocket" << std::endl;
 }
 
-void WinSockClientSocket::send(std::string) {
-
+void WinSockClientSocket::send(std::string message) {
+    int iSendResult = ::send(this->_socket, message.c_str(), message.length(), 0);
+    if (iSendResult == SOCKET_ERROR) {
+        std::cerr << "send failed: " << WSAGetLastError() << std::endl;
+    }
+    else {
+        std::cout << ">> " << message << std::endl;
+    }
+    return;
 }
 
 WinSockClientSocket::WinSockClientSocket(const WinSockClientSocket& obj) {
@@ -18,20 +26,13 @@ WinSockClientSocket::WinSockClientSocket(const WinSockClientSocket& obj) {
 void WinSockClientSocket::receive(std::function<void(std::string)> callback) {
     this->_listening.store(true);
     char recvbuf[DEFAULT_BUFLEN];
-    int iResult, iSendResult;
+    int iResult;
     int recvbuflen = DEFAULT_BUFLEN;
     do {
         iResult = recv(this->_socket, recvbuf, recvbuflen, 0);
         if (iResult > 0) {
             auto message = StringUtils::getStringForShittyBuffer(recvbuf, iResult);
-
-            // Echo the buffer back to the sender
-            //iSendResult = send(clientSocket, recvbuf, iResult, 0);
-            //if (iSendResult == SOCKET_ERROR) {
-            //    printf("send failed: %d\n", WSAGetLastError());
-            //    return;
-            //}
-            //printf("Bytes sent: %d\n", iSendResult);
+            //Message received
             callback(message);
         }
         else if (iResult == 0) {
@@ -39,7 +40,7 @@ void WinSockClientSocket::receive(std::function<void(std::string)> callback) {
             this->_listening.store(false);
         }
         else {
-            std::cerr << "recv failed :" << WSAGetLastError() << "\n";
+            std::cerr << "recv failed :" << WSAGetLastError() << std::endl;
             return;
         }
     } while (iResult > 0 && isListening());

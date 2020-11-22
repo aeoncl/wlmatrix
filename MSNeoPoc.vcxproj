@@ -141,10 +141,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ClientRepository.cpp" />
     <ClCompile Include="MainController.cpp" />
     <ClCompile Include="MSNClient.cpp" />
     <ClCompile Include="MSNP18.cpp" />
     <ClCompile Include="MSNPHandshake.cpp" />
+    <ClCompile Include="MSNPInterpreterFactory.cpp" />
+    <ClCompile Include="MSNSwitchboard.cpp" />
     <ClCompile Include="SocketServerException.cpp" />
     <ClCompile Include="MSNeoPoc.cpp" />
     <ClCompile Include="MSNServer.cpp" />
@@ -153,6 +156,7 @@
     <ClCompile Include="WinSockSocket.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClientRepository.h" />
     <ClInclude Include="IClientSocket.h" />
     <ClInclude Include="IMSNPInterpreter.h" />
     <ClInclude Include="ISocket.h" />
@@ -162,6 +166,7 @@
     <ClInclude Include="MSNPHandshake.h" />
     <ClInclude Include="MSNPInterpreterFactory.h" />
     <ClInclude Include="MSNServer.h" />
+    <ClInclude Include="MSNSwitchboard.h" />
     <ClInclude Include="SocketServerException.h" />
     <ClInclude Include="StringUtils.h" />
     <ClInclude Include="WinSockClientSocket.h" />

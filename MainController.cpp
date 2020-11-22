@@ -1,6 +1,7 @@
 #include "MainController.h"
 #include <thread>
 #include "MSNServer.h"
+#include "ClientRepository.h"
 /* Constructor */
 MainController::MainController() {
 	std::thread thread([this] {createMSNPServer(); });
@@ -9,8 +10,9 @@ MainController::MainController() {
 
 /* Private */
 void MainController::createMSNPServer() {
+	ClientRepository clientRepo = ClientRepository();
 	//ran in another thread
-	std::cout << "Creating MSNP Server thread.\n";
-	MSNServer serv(1863);
+	std::cout << "Creating MSNP Server thread." << std::endl;
+	MSNServer serv(1863, clientRepo);
 	serv.listen();
 }
