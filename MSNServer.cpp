@@ -41,12 +41,12 @@ void MSNServer::onClientConnected(IClientSocket* clientSocket) {
 void MSNServer::handleClient(IClientSocket* socket) {
 	//ran in another thread
 	std::cout << "Started Client thread." << std::endl;
-	auto client = std::make_shared<MSNClient>(socket);
-	this->_clientRepo.addClient(client);
-	client->listen();
-	//when the client don't listen anymore	
-	this->_clientRepo.removeClient(client);
-	std::cout << "Clients count : " << _clientRepo.getClientCount() << std::endl;
+		auto client = std::make_shared<MSNClient>(socket);
+		this->_clientRepo.addClient(client);
+		client->listen();
+		//when the client don't listen anymore	
+		this->_clientRepo.removeClient(client);
+		std::cout << "Clients count : " << _clientRepo.getClientCount() << std::endl;
 }
 
 

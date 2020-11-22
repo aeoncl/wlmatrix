@@ -3,15 +3,15 @@
 #include <string>
 #include "ISocket.h"
 #include "MSNSwitchboard.h"
-#include "IMSNPInterpreter.h"
+#include "IMSNPCommand.h"
 
 class MSNClient {
 	private:
 		IClientSocket* _clientSocket;
-		const IMSNPInterpreter* _interpreter;
 		std::vector<std::shared_ptr<MSNSwitchboard>> _conversations;
 		std::atomic<bool> _listening;
 		std::string _identifier;
+		int _dialectVersion;
 	public:
 		MSNClient(IClientSocket* clientSocket);
 		MSNClient(const MSNClient& obj);
@@ -21,6 +21,6 @@ class MSNClient {
 		void onMessageReceived(std::string message);
 		void addSwitchboard(std::shared_ptr<MSNSwitchboard> switchboard);
 		void removeSwitchboard(std::shared_ptr<MSNSwitchboard> switchboard);
-		void setInterpreter(const IMSNPInterpreter* interpreter);
+		void setDialectVersion(int version);
 		std::string getId();
 };

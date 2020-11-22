@@ -14,13 +14,14 @@ void WinSockClientSocket::send(std::string message) {
         std::cerr << "send failed: " << WSAGetLastError() << std::endl;
     }
     else {
-        std::cout << ">> " << message << std::endl;
+        std::cout << "<< " << message << std::endl;
     }
     return;
 }
 
 WinSockClientSocket::WinSockClientSocket(const WinSockClientSocket& obj) {
     this->_socket = obj._socket;
+    this->_ip = obj._ip;
 }
 
 void WinSockClientSocket::receive(std::function<void(std::string)> callback) {
@@ -28,12 +29,18 @@ void WinSockClientSocket::receive(std::function<void(std::string)> callback) {
     char recvbuf[DEFAULT_BUFLEN];
     int iResult;
     int recvbuflen = DEFAULT_BUFLEN;
+
+    std::string message = "";
     do {
         iResult = recv(this->_socket, recvbuf, recvbuflen, 0);
         if (iResult > 0) {
-            auto message = StringUtils::getStringForShittyBuffer(recvbuf, iResult);
-            //Message received
-            callback(message);
+            std::string currentPart = StringUtils::getStringForShittyBuffer(recvbuf, recvbuflen, iResult);
+            message.append(currentPart);
+            if (iResult < recvbuflen) {
+                //complete message not hitting buffer length
+                callback(message);
+                message.clear();
+            }
         }
         else if (iResult == 0) {
             std::cout << "Client Disconnected...\n";
@@ -44,6 +51,11 @@ void WinSockClientSocket::receive(std::function<void(std::string)> callback) {
             return;
         }
     } while (iResult > 0 && isListening());
+}
+
+std::string WinSockClientSocket::getIpAddress() {
+    return this->_ip;
+
 }
 
 bool WinSockClientSocket::isListening()

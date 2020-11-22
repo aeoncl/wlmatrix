@@ -43,11 +43,11 @@
     <Filter Include="Fichiers sources\Sockets">
       <UniqueIdentifier>{0dfa5ec1-a065-4a3e-a98c-2d843becf888}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Fichiers sources\Models\MSNInterpreters">
-      <UniqueIdentifier>{28c46596-c0b6-48ed-932a-100a17c3bbe9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Fichiers d%27en-tête\Models\MSNInterpreters">
+    <Filter Include="Fichiers d%27en-tête\Models\MSNPCommands">
       <UniqueIdentifier>{93269b13-bee6-49eb-b6f3-122cb1fc5260}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Models\MSNPCommands">
+      <UniqueIdentifier>{28c46596-c0b6-48ed-932a-100a17c3bbe9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,12 +75,6 @@
     <ClCompile Include="WinSockClientSocket.cpp">
       <Filter>Fichiers sources\Sockets</Filter>
     </ClCompile>
-    <ClCompile Include="MSNPHandshake.cpp">
-      <Filter>Fichiers sources\Models\MSNInterpreters</Filter>
-    </ClCompile>
-    <ClCompile Include="MSNP18.cpp">
-      <Filter>Fichiers sources\Models\MSNInterpreters</Filter>
-    </ClCompile>
     <ClCompile Include="ClientRepository.cpp">
       <Filter>Fichiers sources\Models</Filter>
     </ClCompile>
@@ -88,7 +82,10 @@
       <Filter>Fichiers sources\Models</Filter>
     </ClCompile>
     <ClCompile Include="MSNPInterpreterFactory.cpp">
-      <Filter>Fichiers sources\Models\MSNInterpreters</Filter>
+      <Filter>Fichiers sources\Models\MSNPCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="MSNPCommands.cpp">
+      <Filter>Fichiers sources\Models\MSNPCommands</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,23 +116,20 @@
     <ClInclude Include="WinSockClientSocket.h">
       <Filter>Fichiers d%27en-tête\Sockets</Filter>
     </ClInclude>
-    <ClInclude Include="MSNP18.h">
-      <Filter>Fichiers d%27en-tête\Models\MSNInterpreters</Filter>
-    </ClInclude>
-    <ClInclude Include="IMSNPInterpreter.h">
-      <Filter>Fichiers d%27en-tête\Models\MSNInterpreters</Filter>
-    </ClInclude>
-    <ClInclude Include="MSNPHandshake.h">
-      <Filter>Fichiers d%27en-tête\Models\MSNInterpreters</Filter>
-    </ClInclude>
-    <ClInclude Include="MSNPInterpreterFactory.h">
-      <Filter>Fichiers d%27en-tête\Models\MSNInterpreters</Filter>
-    </ClInclude>
     <ClInclude Include="ClientRepository.h">
       <Filter>Fichiers d%27en-tête\Models</Filter>
     </ClInclude>
     <ClInclude Include="MSNSwitchboard.h">
       <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="IMSNPCommand.h">
+      <Filter>Fichiers d%27en-tête\Models\MSNPCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="MSNPCommandFactory.h">
+      <Filter>Fichiers d%27en-tête\Models\MSNPCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="MSNPCommands.h">
+      <Filter>Fichiers d%27en-tête\Models\MSNPCommands</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

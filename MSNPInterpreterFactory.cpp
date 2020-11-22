@@ -1,11 +1,14 @@
-#include "MSNPInterpreterFactory.h"
+#include "MSNPCommandFactory.h"
+#include "MSNPCommands.h"
 
-const IMSNPInterpreter* MSNPInterpreterFactory::getInterpreter(int MSNPVersion){
-	auto test = _interpreters.at(MSNPVersion);
+const IMSNPCommand* MSNPCommandFactory::getCommand(std::string commandName){
+	auto test = _commands.at(commandName);
 	return test;
 }
 
-const std::unordered_map<int, const IMSNPInterpreter*> MSNPInterpreterFactory::_interpreters = {
-  { -1, new MSNPHandshake() },
-  { 18, new MSNP18() }
+const std::unordered_map<std::string, const IMSNPCommand*> MSNPCommandFactory::_commands = {
+  {"VER", new MSNPVER()},
+  {"USR", new MSNPUSR()},
+  {"CVR", new MSNPCVR()},
+  {"UUX", new MSNPUUX()}
 };

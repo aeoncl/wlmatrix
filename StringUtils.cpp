@@ -10,7 +10,13 @@ std::vector<std::string> StringUtils::split(std::string& string, char separator)
 		remainingString = remainingString.substr(separatorIndex+1, remainingString.length());
 		separatorIndex = remainingString.find(separator);
 	}
+
 	return strings;
+}
+
+std::vector<std::string> StringUtils::splitWords(std::string& string) {
+	auto stringAppend = string + " ";
+	return split(stringAppend, ' ');
 }
 
 std::vector<std::string> StringUtils::splitLines(std::string& string)
@@ -18,7 +24,17 @@ std::vector<std::string> StringUtils::splitLines(std::string& string)
 	return split(string, '\n');
 }
 
-std::string StringUtils::getStringForShittyBuffer(char chars[], int messageLength) {
-	chars[messageLength] = '\0';
-	return std::string(chars);
+std::string StringUtils::getStringForShittyBuffer(char chars[], int arrayLength, int messageLength) {
+	std::string out;
+	if (arrayLength <= messageLength) {
+		char* temp = new char[messageLength+1];
+		std::copy(chars, chars + messageLength, temp);
+		temp[messageLength+1] = '\0';
+		out = std::string(temp);
+	}
+	else {
+		chars[messageLength] = '\0';
+		out = std::string(chars);
+	}
+	return out;
 }

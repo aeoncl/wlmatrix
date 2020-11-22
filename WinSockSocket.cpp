@@ -51,6 +51,7 @@ WSADATA* WinSockSocket::initWinsock() {
 
 addrinfo* WinSockSocket::getAddressInfo() {
 	struct addrinfo* result;
+
 	struct addrinfo hints;
 
 	ZeroMemory(&hints, sizeof(hints));
@@ -61,6 +62,7 @@ addrinfo* WinSockSocket::getAddressInfo() {
 
 	std::string portAsString = std::to_string(this->_port);
 	int addrStatus = getaddrinfo(NULL, portAsString.c_str(), &hints, &result);
+
 	if (addrStatus != 0) {
 		throw SocketServerException("GetAddressInfo - failed: " + addrStatus);
 	}
@@ -96,13 +98,15 @@ void WinSockSocket::listen(std::function<void(IClientSocket*)> callback) {
 	}
 	SOCKET clientSocket = INVALID_SOCKET;
 	this->_listening.store(true);
+	SOCKADDR_IN addr;
+	int addrlen = sizeof(addr);
 
 	while (isListening()) {
 		// Accept a client socket
-		clientSocket = accept(_listenSocket, NULL, NULL);
+		clientSocket = accept(_listenSocket, (SOCKADDR*)&addr, &addrlen);
 
 		if (clientSocket != INVALID_SOCKET) {
-			callback(new WinSockClientSocket(clientSocket));
+			callback(new WinSockClientSocket(clientSocket, ""));
 		}
 		else {
 			std::cerr << "Listen - accept failed: " << WSAGetLastError();
