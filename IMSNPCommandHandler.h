@@ -4,7 +4,7 @@
 
 class MSNClient;
 
-class IMSNPCommand {
+class IMSNPCommandHandler {
 	public :
 		virtual std::vector<std::string> executeCommand(std::string message, MSNClient& client, int dialectVersion) const { return std::vector<std::string>(); };
 };

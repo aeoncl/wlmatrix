@@ -1,18 +1,29 @@
 #include "MainController.h"
 #include <thread>
-#include "MSNServer.h"
-#include "ClientRepository.h"
+#include "ClientInfoRepository.h"
+#include "MSNNotificationServer.h"
+#include "MSNSwitchboardServer.h"
+
 /* Constructor */
 MainController::MainController() {
-	std::thread thread([this] {createMSNPServer(); });
-	thread.detach();
+	std::thread msnNotifThread([this] {createMSNNotifServer(); });
+	msnNotifThread.detach();
+	std::thread msnSwitchboardThread([this] {createMSNSwitchboardServer(); });
+	msnSwitchboardThread.detach();
 }
 
 /* Private */
-void MainController::createMSNPServer() {
-	ClientRepository clientRepo = ClientRepository();
+void MainController::createMSNNotifServer() {
+	ClientInfoRepository clientRepo = ClientInfoRepository();
 	//ran in another thread
-	std::cout << "Creating MSNP Server thread." << std::endl;
-	MSNServer serv(1863, clientRepo);
-	serv.listen();
+	MSNNotificationServer msnNotificationServer(clientRepo);
+	msnNotificationServer.listen();
+}
+
+/* Private */
+void MainController::createMSNSwitchboardServer() {
+	ClientInfoRepository clientRepo = ClientInfoRepository();
+	//ran in another thread
+	MSNSwitchboardServer msnSwitchboardServer(clientRepo);
+	msnSwitchboardServer.listen();
 }

@@ -9,13 +9,11 @@ class IMSNPInterpreter;
 class MSNSwitchboard {
 	private :
 		IClientSocket* _clientSocket;
-		IMSNPInterpreter* _interpreter;
 		std::atomic<bool> _listening;
-		std::thread _thread;
-		std::string _identifier;
 	public : 
-		MSNSwitchboard(IClientSocket* clientSocket, IMSNPInterpreter* interpreter) : _clientSocket(clientSocket), _interpreter(interpreter) {};
+		MSNSwitchboard(IClientSocket* clientSocket) : _clientSocket(clientSocket) {};
 		MSNSwitchboard(const MSNSwitchboard& obj);
 		~MSNSwitchboard();
+		void listen();
 };
 

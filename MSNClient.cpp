@@ -1,20 +1,18 @@
 #include "MSNClient.h"
 #include "StringUtils.h"
 #include <iostream>
-#include "MSNPCommandFactory.h"
+#include "MSNPCommandHandlerFactory.h"
 
 
 /* Constructor */
 MSNClient::MSNClient(IClientSocket* clientSocket) {
     this->_clientSocket = clientSocket;
-    this->_dialectVersion = -1;
     std::cout << "MSNClient constructed" << std::endl;
 }
 
 /* Copystructor */
 MSNClient::MSNClient(const MSNClient& obj) {
 	_clientSocket = obj._clientSocket;
-    _dialectVersion = obj._dialectVersion;
 }
 
 /* Destructor */
@@ -41,33 +39,14 @@ void MSNClient::onMessageReceived(std::string message) {
         bool const hasMatches = std::regex_search(line, matchResults, std::regex("([A-Z]{3})"));
         if (hasMatches) {
             auto commandName = matchResults[0].str();
-            auto commandHandler = MSNPCommandFactory::getCommand(commandName);
-            auto responses = commandHandler->executeCommand(line, *this, _dialectVersion);
+            auto commandHandler = MSNPCommandHandlerFactory::getCommand(commandName);
+            auto responses = commandHandler->executeCommand(line, *this, -1);//TODO
             for (auto response : responses) {
                 this->_clientSocket->send(response);
             }
         }
     }
 }
-
-
-
-void MSNClient::addSwitchboard(std::shared_ptr<MSNSwitchboard> switchboard) {
-    this->_conversations.push_back(switchboard);
-}
-
-void MSNClient::removeSwitchboard(std::shared_ptr<MSNSwitchboard> switchboard) {
-    //TODO
-}
-
-void MSNClient::setDialectVersion(int version){
-    this->_dialectVersion = version;
-}
-
-std::string MSNClient::getId() {
-    return this->_identifier;
-}
-
 
 
 

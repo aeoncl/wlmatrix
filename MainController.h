@@ -3,5 +3,7 @@ class MainController {
 	public :
 		MainController();
 	private :
-		void createMSNPServer();
+		void createMSNNotifServer();
+		void createMSNSwitchboardServer();
+
 };

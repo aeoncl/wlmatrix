@@ -6,8 +6,9 @@
 #pragma comment(lib, "Ws2_32.lib")
 
 /* Constructor */
-WinSockSocket::WinSockSocket(int port) {
+WinSockSocket::WinSockSocket(std::string url, int port) {
 	this->_port = port;
+	this->_url = url;
 	this->_listenSocket = INVALID_SOCKET;
 	this->createSocket();
 }
@@ -15,6 +16,7 @@ WinSockSocket::WinSockSocket(int port) {
 /* Copystructor */
 WinSockSocket::WinSockSocket(const WinSockSocket& obj) {
 	this->_port = obj._port;
+	this->_url = obj._url;
 	this->_listenSocket = obj._listenSocket;
 }
 
@@ -61,7 +63,7 @@ addrinfo* WinSockSocket::getAddressInfo() {
 	hints.ai_flags = AI_PASSIVE;
 
 	std::string portAsString = std::to_string(this->_port);
-	int addrStatus = getaddrinfo(NULL, portAsString.c_str(), &hints, &result);
+	int addrStatus = getaddrinfo(_url.c_str(), portAsString.c_str(), &hints, &result);
 
 	if (addrStatus != 0) {
 		throw SocketServerException("GetAddressInfo - failed: " + addrStatus);

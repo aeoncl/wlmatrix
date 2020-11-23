@@ -6,6 +6,7 @@ class WinSockSocket : public ISocket {
 
 	private:
 		int _port;
+		std::string _url;
 		std::atomic_bool _listening;
 		SOCKET _listenSocket;
 		void createSocket();
@@ -14,7 +15,7 @@ class WinSockSocket : public ISocket {
 		void createSocket(addrinfo* result);
 		void bindSocket(addrinfo* result);
 	public :
-		WinSockSocket(int port);
+		WinSockSocket(std::string url, int port);
 		WinSockSocket(const WinSockSocket& obj);
 		~WinSockSocket();
 		void listen(std::function<void(IClientSocket*)> callback) override;

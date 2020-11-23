@@ -1,6 +1,7 @@
-#include "MSNPCommands.h"
+#include "IMSNPCommandHandler.h"
 #include "MSNClient.h"
 #include "StringUtils.h"
+#include "MSNPCommandHandlers.h"
 
 std::vector<std::string> MSNPVER::executeCommand(std::string message, MSNClient& client, int dialectVersion) const {
 	std::vector<std::string> responses;
@@ -11,7 +12,7 @@ std::vector<std::string> MSNPVER::executeCommand(std::string message, MSNClient&
 		auto firstMatch = matchResults[0].str();
 		auto maxMSNPVer = firstMatch.substr(4, 2);
 		int maxMSNPVerParsed = std::stoi(maxMSNPVer);
-		client.setDialectVersion(maxMSNPVerParsed);
+		//client.setDialectVersion(maxMSNPVerParsed); TODO set client version
 		auto response = "VER 1 MSNP" + maxMSNPVer + "\r\n";
 		responses.push_back(response);
 	}
@@ -66,6 +67,23 @@ std::vector<std::string> MSNPUSR::executeCommand(std::string message, MSNClient&
 
 std::vector<std::string> MSNPUUX::executeCommand(std::string message, MSNClient& client, int dialectVersion) const {
 	std::vector<std::string> responses;
-	responses.push_back("yes");
+	auto matches = StringUtils::splitWords(message);
+	auto commandOrder = matches[1];
+
+	responses.push_back("UUX " + commandOrder + " 0\r\n");
+	return responses;
+}
+
+std::vector<std::string> MSNPBLP::executeCommand(std::string message, MSNClient& client, int dialectVersion) const {
+	std::vector<std::string> responses;
+	auto matches = StringUtils::splitWords(message);
+	auto commandOrder = matches[1];
+
+	responses.push_back("BLP " + commandOrder + " 0\r\n");
+	return responses;
+}
+
+std::vector<std::string> MSNPEmpty::executeCommand(std::string message, MSNClient& client, int dialectVersion) const {
+	std::vector<std::string> responses{ "UUX 0 0\r\n" };
 	return responses;
 }

@@ -49,6 +49,12 @@
     <Filter Include="Fichiers sources\Models\MSNPCommands">
       <UniqueIdentifier>{28c46596-c0b6-48ed-932a-100a17c3bbe9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Repositories">
+      <UniqueIdentifier>{4c02c47a-e810-41bf-ac36-b1aeb791b1c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\Repositories">
+      <UniqueIdentifier>{1f19eaf2-b33c-43c0-8c54-86f0804b87a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MSNeoPoc.cpp">
@@ -69,23 +75,29 @@
     <ClCompile Include="WinSockSocket.cpp">
       <Filter>Fichiers sources\Sockets</Filter>
     </ClCompile>
-    <ClCompile Include="MSNServer.cpp">
-      <Filter>Fichiers sources\Models</Filter>
-    </ClCompile>
     <ClCompile Include="WinSockClientSocket.cpp">
       <Filter>Fichiers sources\Sockets</Filter>
-    </ClCompile>
-    <ClCompile Include="ClientRepository.cpp">
-      <Filter>Fichiers sources\Models</Filter>
     </ClCompile>
     <ClCompile Include="MSNSwitchboard.cpp">
       <Filter>Fichiers sources\Models</Filter>
     </ClCompile>
-    <ClCompile Include="MSNPInterpreterFactory.cpp">
+    <ClCompile Include="ClientInfoRepository.cpp">
+      <Filter>Fichiers sources\Repositories</Filter>
+    </ClCompile>
+    <ClCompile Include="TCPServer.cpp">
+      <Filter>Fichiers sources\Sockets</Filter>
+    </ClCompile>
+    <ClCompile Include="MSNPCommandHandlers.cpp">
       <Filter>Fichiers sources\Models\MSNPCommands</Filter>
     </ClCompile>
-    <ClCompile Include="MSNPCommands.cpp">
+    <ClCompile Include="MSNPCommandHandlerFactory.cpp">
       <Filter>Fichiers sources\Models\MSNPCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="MSNPCommand.cpp">
+      <Filter>Fichiers sources\Models\MSNPCommands</Filter>
+    </ClCompile>
+    <ClCompile Include="CryptoUtils.cpp">
+      <Filter>Fichiers sources\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,26 +122,44 @@
     <ClInclude Include="WinSockSocket.h">
       <Filter>Fichiers d%27en-tête\Sockets</Filter>
     </ClInclude>
-    <ClInclude Include="MSNServer.h">
-      <Filter>Fichiers d%27en-tête\Models</Filter>
-    </ClInclude>
     <ClInclude Include="WinSockClientSocket.h">
       <Filter>Fichiers d%27en-tête\Sockets</Filter>
-    </ClInclude>
-    <ClInclude Include="ClientRepository.h">
-      <Filter>Fichiers d%27en-tête\Models</Filter>
     </ClInclude>
     <ClInclude Include="MSNSwitchboard.h">
       <Filter>Fichiers d%27en-tête\Models</Filter>
     </ClInclude>
-    <ClInclude Include="IMSNPCommand.h">
+    <ClInclude Include="ClientInfo.h">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="MSNNotificationServer.h">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="MSNSwitchboardServer.h">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="ClientInfoRepository.h">
+      <Filter>Fichiers d%27en-tête\Repositories</Filter>
+    </ClInclude>
+    <ClInclude Include="TCPServer.h">
+      <Filter>Fichiers d%27en-tête\Sockets</Filter>
+    </ClInclude>
+    <ClInclude Include="IMSNPCommandHandler.h">
       <Filter>Fichiers d%27en-tête\Models\MSNPCommands</Filter>
     </ClInclude>
-    <ClInclude Include="MSNPCommandFactory.h">
+    <ClInclude Include="MSNPCommandHandlers.h">
       <Filter>Fichiers d%27en-tête\Models\MSNPCommands</Filter>
     </ClInclude>
-    <ClInclude Include="MSNPCommands.h">
+    <ClInclude Include="MSNPCommandHandlerFactory.h">
       <Filter>Fichiers d%27en-tête\Models\MSNPCommands</Filter>
     </ClInclude>
+    <ClInclude Include="MSNPCommand.h">
+      <Filter>Fichiers d%27en-tête\Models\MSNPCommands</Filter>
+    </ClInclude>
+    <ClInclude Include="CryptoUtils.h">
+      <Filter>Fichiers d%27en-tête\Utils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
