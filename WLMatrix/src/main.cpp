@@ -1,4 +1,4 @@
-// MSNeoPoc.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
+// main.cpp : Ce fichier contient la fonction 'main'. L'exécution du programme commence et se termine à cet endroit.
 //
 
 #ifndef WIN32_LEAN_AND_MEAN
