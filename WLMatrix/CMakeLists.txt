@@ -17,6 +17,7 @@ add_executable(
     ${MODELS_DIR}/MSNPCommand.cpp
     ${MODELS_DIR}/MSNPCommandHandlerFactory.cpp
     ${MODELS_DIR}/MSNPCommandHandlers.cpp
+    ${MODELS_DIR}/MSNSoapServer.cpp
     ${MODELS_DIR}/MSNSwitchboard.cpp
     ${REPO_DIR}/ClientInfoRepository.cpp
     ${SOCKETS_DIR}/TCPServer.cpp

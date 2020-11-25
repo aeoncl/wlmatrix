@@ -11,6 +11,5 @@ class MSNSwitchboardServer : public TCPServer {
 		};
 	public :
 		MSNSwitchboardServer(ClientInfoRepository& repo) : TCPServer("127.0.0.1", 1864, repo) {};
-
 };
 

@@ -1,13 +1,15 @@
 #include "ClientInfoRepository.h"
+#include <iostream>
 
 /* Copystructor */
 ClientInfoRepository::ClientInfoRepository(const ClientInfoRepository& obj) {
     this->_clients = obj._clients;
 }
 
-/* Destructor */
+/* Vaati */
 ClientInfoRepository::~ClientInfoRepository() {
     this->_clients.clear();
+    std::cout << "Client Repository destroyed" << std::endl;
 }
 
 ClientInfo* ClientInfoRepository::findClientByLogin(std::string login) {

@@ -20,7 +20,7 @@ TCPServer::TCPServer(const TCPServer& obj) {
 	this->_listenSocket = obj._listenSocket;
 }
 
-/* Destructor */
+/* Vaati */
 TCPServer::~TCPServer() {
 	std::cout << "Destroying SocketServer" << std::endl;
 	delete(_listenSocket);

@@ -15,10 +15,9 @@ MSNClient::MSNClient(const MSNClient& obj) {
 	_clientSocket = obj._clientSocket;
 }
 
-/* Destructor */
+/* Vaati */
 MSNClient::~MSNClient() {
     std::cout << "Client destroyed" << std::endl;
-    //Client destroyed
 }
 
 void MSNClient::listen() {

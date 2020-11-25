@@ -20,7 +20,7 @@ WinSockSocket::WinSockSocket(const WinSockSocket& obj) {
 	this->_listenSocket = obj._listenSocket;
 }
 
-/* Destructor */
+/* Vaati */
 WinSockSocket::~WinSockSocket() {
 	std::cout << "Destroying winsock socket on port " << _port << std::endl;
 	closesocket(_listenSocket);

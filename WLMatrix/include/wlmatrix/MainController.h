@@ -1,11 +1,13 @@
 #pragma once
 #include "ClientInfoRepository.h"
+#include "MSNSoapServer.h"
+
 class MainController {
 	public :
 		MainController();
 	private :
-		void createMSNNotifServer(ClientInfoRepository repo);
-		void createMSNSwitchboardServer(ClientInfoRepository repo);
-		void createMSNSoapServer(ClientInfoRepository repo);
-
+		MSNSoapServer* _soapServer;
+		ClientInfoRepository* _repo;
+		void createMSNNotifServer(ClientInfoRepository* repo);
+		void createMSNSwitchboardServer(ClientInfoRepository* repo);
 };
