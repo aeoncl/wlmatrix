@@ -7,7 +7,7 @@ const IMSNPCommandHandler* MSNPCommandHandlerFactory::getCommand(std::string com
 		return test;
 	}
 	catch (...) {
-		return _commands.at("UUX");
+		return _commands.at("EMPTY");
 	}
 }
 
@@ -17,5 +17,7 @@ const std::unordered_map<std::string, const IMSNPCommandHandler*> MSNPCommandHan
   {"CVR", new MSNPCVR()},
   {"UUX", new MSNPUUX()},
   {"BLP", new MSNPBLP()},
-  {"EMPTY", new MSNPBLP()}
+  {"PNG", new MSNPNG()},
+  {"CHG", new MSNCHG()},
+  {"EMPTY", new MSNPEmpty()}
 };

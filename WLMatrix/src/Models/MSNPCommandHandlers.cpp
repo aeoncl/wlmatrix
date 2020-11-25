@@ -58,7 +58,7 @@ std::vector<std::string> MSNPUSR::executeCommand(std::string message, MSNClient&
 	else {
 		auto response = "USR " + commandOrder + " OK aeon@test.fr 1 0\r\n";
 		responses.push_back(response);
-		responses.push_back("SBS 0 null\r\n");
+		//responses.push_back("SBS 0 null\r\n");
 		responses.push_back("MSG Hotmail Hotmail 0\r\n");
 		responses.push_back("UBX 1:aeon@test.fr 0\r\n");
 	}
@@ -83,7 +83,20 @@ std::vector<std::string> MSNPBLP::executeCommand(std::string message, MSNClient&
 	return responses;
 }
 
+
+std::vector<std::string> MSNPNG::executeCommand(std::string message, MSNClient& client, int dialectVersion) const {
+	std::vector<std::string> responses{ "PNG 60\r\n" };
+	return responses;
+}
+
+std::vector<std::string> MSNCHG::executeCommand(std::string message, MSNClient& client, int dialectVersion) const {
+	std::vector<std::string> responses{ message+"\r\n" };
+	return responses;
+}
+
 std::vector<std::string> MSNPEmpty::executeCommand(std::string message, MSNClient& client, int dialectVersion) const {
 	std::vector<std::string> responses{ "UUX 0 0\r\n" };
 	return responses;
 }
+
+

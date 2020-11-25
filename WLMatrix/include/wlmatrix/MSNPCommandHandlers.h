@@ -26,6 +26,16 @@ public:
 	std::vector<std::string> executeCommand(std::string message, MSNClient& client, int dialectVersion) const override;
 };
 
+class MSNPNG : public IMSNPCommandHandler {
+public:
+	std::vector<std::string> executeCommand(std::string message, MSNClient& client, int dialectVersion) const override;
+};
+
+class MSNCHG : public IMSNPCommandHandler {
+public:
+	std::vector<std::string> executeCommand(std::string message, MSNClient& client, int dialectVersion) const override;
+};
+
 class MSNPEmpty : public IMSNPCommandHandler {
 public:
 	std::vector<std::string> executeCommand(std::string message, MSNClient& client, int dialectVersion) const override;

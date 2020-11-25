@@ -1,4 +1,6 @@
 #include "StringUtils.h"
+#include <sstream> 
+#include <string_view>
 
 std::vector<std::string> StringUtils::split(std::string& string, char separator)
 {
@@ -10,7 +12,6 @@ std::vector<std::string> StringUtils::split(std::string& string, char separator)
 		remainingString = remainingString.substr(separatorIndex+1, remainingString.length());
 		separatorIndex = remainingString.find(separator);
 	}
-
 	return strings;
 }
 
@@ -21,7 +22,13 @@ std::vector<std::string> StringUtils::splitWords(std::string& string) {
 
 std::vector<std::string> StringUtils::splitLines(std::string& string)
 {
-	return split(string, '\n');
+	auto result = std::vector<std::string>{};
+    auto ss = std::stringstream{string};
+
+    for (std::string line; std::getline(ss, line, '\n');)
+        result.push_back((std::string) rtrim(line));
+
+    return result;
 }
 
 std::string StringUtils::getStringForShittyBuffer(char chars[], int arrayLength, int messageLength) {
@@ -37,4 +44,25 @@ std::string StringUtils::getStringForShittyBuffer(char chars[], int arrayLength,
 		out = std::string(chars);
 	}
 	return out;
+}
+
+std::string_view StringUtils::ltrim(std::string_view s)
+{
+    s.remove_prefix(std::distance(s.cbegin(), std::find_if(s.cbegin(), s.cend(),
+         [](int c) {return !std::isspace(c);})));
+
+    return s;
+}
+
+std::string_view StringUtils::rtrim(std::string_view s)
+{
+    s.remove_suffix(std::distance(s.crbegin(), std::find_if(s.crbegin(), s.crend(),
+        [](int c) {return !std::isspace(c);})));
+
+    return s;
+}
+
+std::string_view StringUtils::trim(std::string_view s)
+{
+    return ltrim(rtrim(s));
 }

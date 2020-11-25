@@ -8,5 +8,8 @@ class StringUtils
 		static std::vector<std::string> splitLines(std::string& string);
 		static std::vector<std::string> splitWords(std::string& string);
 		static std::string getStringForShittyBuffer(char chars[], int arrayLength, int messageLength);
+		static std::string_view rtrim(std::string_view s);
+		static std::string_view ltrim(std::string_view s);
+		static std::string_view trim(std::string_view s);
 };
 
