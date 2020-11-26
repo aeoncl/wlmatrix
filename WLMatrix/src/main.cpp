@@ -4,9 +4,13 @@
 
 #include "MainController.h"
 #include <iostream>
+#include <Windows.h>
+#include <thread>
 #pragma comment(lib, "Ws2_32.lib")
 int main()
 {
         MainController();
-        while (true);
+        while(true){
+                Sleep(20000);
+        }
 }

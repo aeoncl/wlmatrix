@@ -7,6 +7,8 @@ set(REPO_DIR src/Repositories)
 set(SOCKETS_DIR src/Sockets)
 set(UTILS_DIR src/Utils)
 set(EXCEPTIONS_DIR src/Exceptions)
+set(XML_DIR src/XML)
+
 
 add_executable(
     ${PROJECT_NAME}
@@ -19,16 +21,21 @@ add_executable(
     ${MODELS_DIR}/MSNPCommandHandlers.cpp
     ${MODELS_DIR}/MSNSoapServer.cpp
     ${MODELS_DIR}/MSNSwitchboard.cpp
+    ${MODELS_DIR}/ClientInfo.cpp
     ${MODELS_DIR}/MSNPCommandParser.cpp
+    ${MODELS_DIR}/MatrixBackend.cpp
     ${REPO_DIR}/ClientInfoRepository.cpp
     ${SOCKETS_DIR}/TCPServer.cpp
     ${SOCKETS_DIR}/WinSockClientSocket.cpp
     ${SOCKETS_DIR}/WinSockSocket.cpp
     ${UTILS_DIR}/CryptoUtils.cpp
     ${UTILS_DIR}/StringUtils.cpp
+    ${XML_DIR}/pugixml.cpp
     )
 
 target_include_directories(${PROJECT_NAME} PUBLIC include/wlmatrix)
+target_include_directories(${PROJECT_NAME} PUBLIC include)
+
 find_package(cpprestsdk REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE cpprestsdk::cpprest)
 #source_group(TREE src PREFIX [FILES <src>...])

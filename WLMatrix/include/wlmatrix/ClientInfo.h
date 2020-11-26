@@ -5,14 +5,18 @@ class ClientInfo {
 		int _dialectVersion;
 		std::string _login;
 		std::string _password;
+		std::string _matrixToken;
 
 	public :
 		int getDialectVersion() { return _dialectVersion; };
 		void setDialectVersion(int dialectVersion) { _dialectVersion = dialectVersion; };
 		std::string getLogin() { return _login; };
-		std::string setLogin(std::string login) { _login = login; };
+		void setLogin(std::string login) { _login = login; };
 		std::string getPassword() { return _password; };
-		std::string setPassword(std::string password) { _password = password; };
+		void setPassword(std::string password) { _password = password; };
+		std::string getMatrixToken() { return _matrixToken; };
+		void setMatrixToken(std::string matrixToken) { _matrixToken = matrixToken; };
+
 
 };
 

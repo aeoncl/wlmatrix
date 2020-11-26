@@ -20,8 +20,7 @@ std::vector<std::string> StringUtils::splitWords(std::string& string) {
 	return split(stringAppend, ' ');
 }
 
-std::vector<std::string> StringUtils::splitLines(std::string& string)
-{
+std::vector<std::string> StringUtils::splitLines(std::string& string) {
 	auto result = std::vector<std::string>{};
     auto ss = std::stringstream{string};
 

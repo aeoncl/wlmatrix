@@ -11,7 +11,8 @@ class MSNSoapServer {
     private:
         http_listener* _listener;
         ClientInfoRepository _repo;
-        void onRequestReceveid(http_request request);
+        void onGetRequestReceveid(http_request request);
+        void onPostRequestReceveid(http_request request);
     public:
         MSNSoapServer(ClientInfoRepository& repo);
         MSNSoapServer(const MSNSoapServer& obj);
