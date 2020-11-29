@@ -19,3 +19,5 @@ The goal is to turn WLM2009 into a Matrix client.
 
 🔴 Everything else
 	
+## Special Thanks
+Thanks a lot to the Escargot team for all their hard work & compilation of great resources. It helps a lot.
