@@ -15,6 +15,7 @@ The goal is to turn WLM2009 into a Matrix client.
 
 ## Current state
 	🟢 Client patch (will create a different repo for that stuff)
-	🟠 Authentication (from MSN -> Matrix) kinda working, need to clean up implementation & investigate what can i do with the matrix login string format 
-	   (it crashed with the matrix@login:server:port format, i'll try to work around it. I curently use a custom format just for poc : login@server-port
+	🟠 Authentication (from MSN -> Matrix) kinda working, need to clean up implementation & investigate what i can do 
+	with the matrix login string format (it crashed with the matrix@login:server:port format, i'll try to work around it. 
+	I curently use a custom format just for poc : login@server-port
 	🔴 Everything else
