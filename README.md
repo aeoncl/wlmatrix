@@ -1,5 +1,6 @@
 # WLMatrix Proof of Concept
 The goal is to turn WLM2009 into a Matrix client.
+![WLMatrix logo](https://i.imgur.com/62Rx1Fq.png)
 
 ## The plan
 1. We need to make the msn client connect to our localhost "server" which will be forwarding MSNP commands to a matrix server.
