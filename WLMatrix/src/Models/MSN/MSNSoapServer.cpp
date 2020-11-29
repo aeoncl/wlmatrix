@@ -2,6 +2,9 @@
 #include <functional>
 #include <iostream>
 #include "pugixml.hpp"
+#include "MatrixBackend.h"
+#include "AuthResponse.h"
+
 using namespace web;
 using namespace http;
 using namespace experimental;
@@ -49,37 +52,55 @@ void MSNSoapServer::listen()
 void MSNSoapServer::onGetRequestReceveid(http_request request)
 {
     //Handle received Gethttp request
-    auto test = request.absolute_uri();
+    auto wholeUri = utility::conversions::to_utf8string(request.request_uri().to_string());
+    auto requestPath = utility::conversions::to_utf8string(request.absolute_uri().to_string());
+
+    std::cout << ">> GET " << wholeUri << std::endl;
     http_response response(200);
     response.set_body("Hi", "text/plain");
+
+    if(requestPath._Starts_with("/config/MsgrConfig.asmx")){
+        std::ifstream ifs("D:\\Aeon\\Documents\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\MsgrConfig_response.xml");
+        std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
+        response.set_body(content, "application/soap+xml");
+    }
+
     request.reply(response);
+
 }
 
 void MSNSoapServer::onPostRequestReceveid(http_request request)
 {
     //Handle received Post http request
-    http_response response(404);
+    http_response response(200);
     response.set_body("Hi", "text/plain");
-
+    auto wholeUri = utility::conversions::to_utf8string(request.request_uri().to_string());
+    
     auto requestPath = utility::conversions::to_utf8string(request.absolute_uri().to_string());
-    if (requestPath == "/RST2.srf")
-    {
+    std::cout << ">> POST " << wholeUri << std::endl;
+
         pugi::xml_document doc;
         auto xmlRequest = request.extract_utf8string(true).get();
         std::cout << xmlRequest << std::endl;
         auto parsedXml = doc.load_string(xmlRequest.c_str());
+
+    if (requestPath == "/RST2.srf")
+    {
+        //TODO move each of those handlers to their separate helper
         std::string searchStr = "wsse:UsernameToken/wsse:Username";
         pugi::xpath_node xpathNode = doc.child("s:Envelope").child("s:Header").child("wsse:Security").child("wsse:UsernameToken");
         std::string login = xpathNode.node().child("wsse:Username").child_value();
         std::string password = xpathNode.node().child("wsse:Password").child_value();
 
-        //TODO parse ce xml de mort
+        MatrixCredentials cred(login, password);
+        MatrixBackend matrix;
+        AuthResponse matrixResponse = matrix.authenticate(cred);
+
+        //TODO set the token & user
         response.set_status_code(200);
         std::ifstream ifs("D:\\Aeon\\Documents\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\RST2_response_success.xml");
         std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
         response.set_body(content, "application/soap+xml");
-    }else{
-
     }
     request.reply(response);
 }

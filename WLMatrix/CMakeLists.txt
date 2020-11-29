@@ -3,6 +3,8 @@ set_property(GLOBAL PROPERTY VCPKG_TARGET_TRIPLET x86-windows)
 
 set(CONTROLLERS_DIR src/Controllers)
 set(MODELS_DIR src/Models)
+set(MATRIX_DIR ${MODELS_DIR}/Matrix)
+set(MSN_DIR ${MODELS_DIR}/MSN)
 set(REPO_DIR src/Repositories)
 set(SOCKETS_DIR src/Sockets)
 set(UTILS_DIR src/Utils)
@@ -15,15 +17,17 @@ add_executable(
     src/main.cpp
     ${CONTROLLERS_DIR}/MainController.cpp
     ${EXCEPTIONS_DIR}/SocketServerException.cpp
-    ${MODELS_DIR}/MSNClient.cpp
-    ${MODELS_DIR}/MSNPCommand.cpp
-    ${MODELS_DIR}/MSNPCommandHandlerFactory.cpp
-    ${MODELS_DIR}/MSNPCommandHandlers.cpp
-    ${MODELS_DIR}/MSNSoapServer.cpp
-    ${MODELS_DIR}/MSNSwitchboard.cpp
     ${MODELS_DIR}/ClientInfo.cpp
-    ${MODELS_DIR}/MSNPCommandParser.cpp
-    ${MODELS_DIR}/MatrixBackend.cpp
+    ${MSN_DIR}/MSNClient.cpp
+    ${MSN_DIR}/MSNPCommand.cpp
+    ${MSN_DIR}/MSNPCommandHandlerFactory.cpp
+    ${MSN_DIR}/MSNPCommandHandlers.cpp
+    ${MSN_DIR}/MSNSoapServer.cpp
+    ${MSN_DIR}/MSNSwitchboard.cpp
+    ${MSN_DIR}/MSNPCommandParser.cpp
+    ${MATRIX_DIR}/MatrixBackend.cpp
+    ${MATRIX_DIR}/MatrixCredentials.cpp
+    ${MATRIX_DIR}/AuthResponse.cpp
     ${REPO_DIR}/ClientInfoRepository.cpp
     ${SOCKETS_DIR}/TCPServer.cpp
     ${SOCKETS_DIR}/WinSockClientSocket.cpp
@@ -34,7 +38,9 @@ add_executable(
     )
 
 target_include_directories(${PROJECT_NAME} PUBLIC include/wlmatrix)
+target_include_directories(${PROJECT_NAME} PUBLIC include/libmatrix)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
+
 
 find_package(cpprestsdk REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE cpprestsdk::cpprest)
