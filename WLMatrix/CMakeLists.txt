@@ -5,6 +5,8 @@ set(CONTROLLERS_DIR src/Controllers)
 set(MODELS_DIR src/Models)
 set(MATRIX_DIR ${MODELS_DIR}/Matrix)
 set(MSN_DIR ${MODELS_DIR}/MSN)
+set(MSN_COMMANDS_DIR ${MSN_DIR}/Commands)
+set(MSN_SOAP_DIR ${MSN_DIR}/SOAP)
 set(REPO_DIR src/Repositories)
 set(SOCKETS_DIR src/Sockets)
 set(UTILS_DIR src/Utils)
@@ -19,12 +21,16 @@ add_executable(
     ${EXCEPTIONS_DIR}/SocketServerException.cpp
     ${MODELS_DIR}/ClientInfo.cpp
     ${MSN_DIR}/MSNClient.cpp
-    ${MSN_DIR}/MSNPCommand.cpp
-    ${MSN_DIR}/MSNPCommandHandlerFactory.cpp
-    ${MSN_DIR}/MSNPCommandHandlers.cpp
-    ${MSN_DIR}/MSNSoapServer.cpp
+    ${MSN_COMMANDS_DIR}/MSNPCommand.cpp
+    ${MSN_COMMANDS_DIR}/MSNPCommandHandlerFactory.cpp
+    ${MSN_COMMANDS_DIR}/MSNPCommandHandlers.cpp
+    ${MSN_SOAP_DIR}/MSNSoapServer.cpp
     ${MSN_DIR}/MSNSwitchboard.cpp
-    ${MSN_DIR}/MSNPCommandParser.cpp
+    ${MSN_COMMANDS_DIR}/MSNPCommandParser.cpp
+    ${MSN_SOAP_DIR}/MSNSoapToMatrix.cpp
+    ${MSN_SOAP_DIR}/MatrixToMSNSoap.cpp
+    ${MSN_SOAP_DIR}/SoapEndpointHandlerFactory.cpp
+    ${MSN_SOAP_DIR}/SoapEndpointHandlers.cpp
     ${MATRIX_DIR}/MatrixBackend.cpp
     ${MATRIX_DIR}/MatrixCredentials.cpp
     ${MATRIX_DIR}/AuthResponse.cpp
@@ -34,6 +40,7 @@ add_executable(
     ${SOCKETS_DIR}/WinSockSocket.cpp
     ${UTILS_DIR}/CryptoUtils.cpp
     ${UTILS_DIR}/StringUtils.cpp
+    ${UTILS_DIR}/DateUtils.cpp
     ${XML_DIR}/pugixml.cpp
     )
 
