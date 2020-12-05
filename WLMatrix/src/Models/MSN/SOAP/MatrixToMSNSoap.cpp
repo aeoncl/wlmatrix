@@ -40,16 +40,12 @@ std::string MatrixToMSNSoap::getAllTokens(std::string token, std::string today, 
 
 std::string MatrixToMSNSoap::forgeRST2Token(std::string domain, std::string token, std::string today, std::string tomorrow, int number)
 {
-
     std::vector<std::string> arguments{domain, today, tomorrow, std::to_string(number), token, std::to_string(number), "tgoPVK67sU36fQKlGLMgWgTXp7oiaQgE", ""};
-
     std::string out;
-
     for (int i = 0; i < MSNPSoapMessages::RST2_TOKEN.size(); i++)
     {
         out.append(MSNPSoapMessages::RST2_TOKEN[i]);
         out.append(arguments[i]);
     }
-
     return out;
 }

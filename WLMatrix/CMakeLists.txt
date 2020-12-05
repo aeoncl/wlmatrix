@@ -4,6 +4,8 @@ set_property(GLOBAL PROPERTY VCPKG_TARGET_TRIPLET x86-windows)
 set(CONTROLLERS_DIR src/Controllers)
 set(MODELS_DIR src/Models)
 set(MATRIX_DIR ${MODELS_DIR}/Matrix)
+set(MATRIX_EVENTS_DIR ${MATRIX_DIR}/Events)
+
 set(MSN_DIR ${MODELS_DIR}/MSN)
 set(MSN_COMMANDS_DIR ${MSN_DIR}/Commands)
 set(MSN_SOAP_DIR ${MSN_DIR}/SOAP)
@@ -33,7 +35,11 @@ add_executable(
     ${MSN_SOAP_DIR}/SoapEndpointHandlers.cpp
     ${MATRIX_DIR}/MatrixBackend.cpp
     ${MATRIX_DIR}/MatrixCredentials.cpp
+    ${MATRIX_DIR}/MatrixAccountData.cpp
+    ${MATRIX_DIR}/MatrixJoinedRoom.cpp
+    ${MATRIX_EVENTS_DIR}/MatrixEvent.cpp
     ${MATRIX_DIR}/AuthResponse.cpp
+    ${MATRIX_DIR}/SyncResponse.cpp
     ${REPO_DIR}/ClientInfoRepository.cpp
     ${SOCKETS_DIR}/TCPServer.cpp
     ${SOCKETS_DIR}/WinSockClientSocket.cpp

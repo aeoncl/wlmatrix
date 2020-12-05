@@ -13,5 +13,6 @@ const ISoapEndpointHandler* SoapEndpointHandlerFactory::getHandler(std::string r
 const std::unordered_map<std::string, const ISoapEndpointHandler*> SoapEndpointHandlerFactory::_handlers = {
     {"/RST2.srf", new RST2()},
     {"/abservice/SharingService.asmx", new SharingService()},
+    {"/abservice/abservice.asmx", new AbService()},
     {"empty", new SoapEmpty()}
 };

@@ -6,8 +6,9 @@ class MatrixCredentials : public IJsonSerializable {
     private :
         std::string _username;
         std::string _password;
-        std::string _url;
+        std::string _serverName;
         std::string _port;
+        std::string _url;
         void parseLogin(std::string login);
     public :
         MatrixCredentials(std::string login, std::string password);

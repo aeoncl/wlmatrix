@@ -44,7 +44,8 @@ using namespace conversions;
         //Todo make this not suck
 	    if (hasMatches) {
 		    _username = matchResults[1].str();
-            _url = matchResults[2].str();
+            _serverName = matchResults[2].str();
             _port = matchResults[3].str();
+            _url = "http://" + _serverName + ":" + _port;
         }
     }

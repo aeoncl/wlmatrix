@@ -76,7 +76,6 @@ void MSNSoapServer::onGetRequestReceveid(http_request request)
 void MSNSoapServer::onPostRequestReceveid(http_request request)
 {
     auto requestPath = utility::conversions::to_utf8string(request.absolute_uri().to_string());
-    std::cout << ">> POST " << requestPath << std::endl;
 
     auto xmlRequestBody = request.extract_utf8string(true).get();
     auto handler = SoapEndpointHandlerFactory::getHandler(requestPath);
@@ -84,6 +83,7 @@ void MSNSoapServer::onPostRequestReceveid(http_request request)
     if(request.headers().has(L"SOAPAction")){
         soapAction = utility::conversions::to_utf8string(request.headers()[L"SOAPAction"]);
     }
+    std::cout << ">> POST " << requestPath  << " : " << soapAction << std::endl;
     auto soapResponse = handler->handleRequest(xmlRequestBody, soapAction, new ClientInfo());
     
     http_response response(soapResponse.getStatusCode());    

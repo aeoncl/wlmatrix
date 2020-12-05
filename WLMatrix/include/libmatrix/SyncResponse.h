@@ -1,22 +1,26 @@
 #pragma once
 #include <string>
 #include <vector>
-#include "MatrixRoom.h"
+#include "MatrixJoinedRoom.h"
+#include "MatrixInvitedRoom.h"
+#include "MatrixLeftRoom.h"
+
 #include "MatrixPresence.h"
-#include "AccountData.h"
+#include "MatrixAccountData.h"
+
 class SyncResponse {
     private : 
         std::string _nextBatch;
-        AccountData _accountData;
-        std::vector<MatrixRoom> _joinedRooms;
-        std::vector<MatrixRoom> _invitedRooms;
-        std::vector<MatrixRoom> _leftRooms;
+        MatrixAccountData _accountData;
+        std::vector<MatrixJoinedRoom> _joinedRooms;
+        std::vector<MatrixInvitedRoom> _invitedRooms;
+        std::vector<MatrixLeftRoom> _leftRooms;
         MatrixPresence _presence;
     public : 
         void setNextBatch(std::string nextBatch){
             _nextBatch = nextBatch;
         }
-        void setAccountData(AccountData data){
+        void setAccountData(MatrixAccountData data){
             _accountData = data;
         }
         void setJoinedRooms();
@@ -25,5 +29,18 @@ class SyncResponse {
         void setPresence(MatrixPresence presence){
             _presence = presence;
         }
+
+        void addJoinedRoom(MatrixJoinedRoom joinedRoom){
+            _joinedRooms.push_back(joinedRoom);
+        }
+
+        void addInvitedRoom(MatrixInvitedRoom invitedRoom){
+            _invitedRooms.push_back(invitedRoom);
+        }
+
+        void addInvitedRoom(MatrixLeftRoom leftRoom){
+            _leftRooms.push_back(leftRoom);
+        }
+
         static SyncResponse deserializeJson(std::string json);
 };

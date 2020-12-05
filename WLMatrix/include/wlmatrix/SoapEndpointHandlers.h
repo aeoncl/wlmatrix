@@ -16,6 +16,13 @@ class SharingService : public ISoapEndpointHandler {
 		SoapResponse handleRequest(std::string requestBody, std::string soapAction, ClientInfo* clientInfo) const override;
 };
 
+class AbService : public ISoapEndpointHandler {
+    private : 
+        SoapResponse handleFindContactsPaged(std::string requestBody, std::string soapAction, ClientInfo* clientInfo) const;
+	public:
+		SoapResponse handleRequest(std::string requestBody, std::string soapAction, ClientInfo* clientInfo) const override;
+};
+
 
 class SoapEmpty : public ISoapEndpointHandler {
 	public:

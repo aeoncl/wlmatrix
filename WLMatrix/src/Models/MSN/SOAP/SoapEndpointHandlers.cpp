@@ -14,6 +14,9 @@ SoapResponse RST2::handleRequest(std::string requestBody, std::string soapAction
 
         MatrixBackend matrix;
         AuthResponse matrixResponse = matrix.authenticate(creds);
+
+        matrix.initialSync(matrixResponse, creds.getUrl(), "", MatrixPresence::Online);
+
         // try and create responses
         MatrixToMSNSoap mat2msn;
         auto xmlPayload = mat2msn.getRST2Response(matrixResponse);
@@ -23,8 +26,22 @@ SoapResponse RST2::handleRequest(std::string requestBody, std::string soapAction
 
 SoapResponse SharingService::handleRequest(std::string requestBody, std::string soapAction, ClientInfo* info) const {
         std::cout << "Test: " << requestBody << std::endl;
+        if(soapAction == "http://www.msn.com/webservices/AddressBook/FindMembership"){
+                        std::ifstream ifs("D:\\Aeon\\Documents\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\ab\\find_membership.xml");
+                        std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
+                        return SoapResponse(content, 200);
+        }
         return SoapResponse("", 200);
+}
 
+SoapResponse AbService::handleRequest(std::string requestBody, std::string soapAction, ClientInfo* info) const {
+        std::cout << "Test: " << requestBody << std::endl;
+        if(soapAction == "http://www.msn.com/webservices/AddressBook/ABFindContactsPaged"){
+                        std::ifstream ifs("D:\\Aeon\\Documents\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\ab\\find_contacts_paged.xml");
+                        std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
+                        return SoapResponse(content, 200);
+        }
+        return SoapResponse("", 200);
 }
 
 /**

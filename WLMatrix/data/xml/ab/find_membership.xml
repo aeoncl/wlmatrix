@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <soap:Header>
+        <ServiceHeader xmlns="http://www.msn.com/webservices/AddressBook">
+            <Version>15.01.1408.0000</Version>
+            <CacheKey>12r1:VmV4AZeGXqJvemPx973A_p7r6w72NNhyQpzukKLaIV6hBndxsNXKb7zZI0sRgKhI6ClG7T5mnA9ufYtOKNRFtII4vAqvlXGZU7Z2-fcwIZm1309Rr8Ufp1kNEf7-O9qX7nIU18Gfg6b7FBFwAdw-ziCtldVhyoW1ubS5s6TJNasYNDa2SlEyZEo0KZmjmkUD8DvSkU9IaGfk4y_vXRCl39CU5fNaht8MLz4teQ</CacheKey>
+            <CacheKeyChanged>true</CacheKeyChanged>
+            <PreferredHostName>localhost</PreferredHostName>
+            <SessionId>9f5a2db2-fb72-4309-8ac4-4602768ed83b</SessionId>
+        </ServiceHeader>
+    </soap:Header>
+    <soap:Body>
+        <FindMembershipResponse xmlns="http://www.msn.com/webservices/AddressBook">
+            <FindMembershipResult>
+                <Services>
+                    <Service>
+                        <Memberships>
+                            <Membership>
+                                <MemberRole>Allow</MemberRole>
+                                <Members>
+                                    <Member xsi:type="PassportMember">
+                                        <MembershipId>Allow/bc57b0bc-1edb-4566-8d4d-793edc21ad48</MembershipId>
+                                        <Type>Passport</Type>
+                                        <State>Accepted</State>
+                                        <Deleted>false</Deleted>
+                                        <LastChanged>2020-12-05T10:16:20Z</LastChanged>
+                                        <JoinedDate>2020-12-05T10:05:53Z</JoinedDate>
+                                        <ExpirationDate>0001-01-01T00:00:00</ExpirationDate>
+                                        <Changes />
+                                        <PassportName>test@test.fr</PassportName>
+                                        <IsPassportNameHidden>false</IsPassportNameHidden>
+                                        <PassportId>0</PassportId>
+                                        <CID>5236879171526413709</CID>
+                                        <PassportChanges />
+                                        <LookedupByCID>false</LookedupByCID>
+                                    </Member>
+                                </Members>
+                                <MembershipIsComplete>true</MembershipIsComplete>
+                            </Membership>
+                            <Membership>
+                                <MemberRole>Block</MemberRole>
+                                <Members></Members>
+                                <MembershipIsComplete>true</MembershipIsComplete>
+                            </Membership>
+                            <Membership>
+                                <MemberRole>Reverse</MemberRole>
+                                <Members>
+                                    <Member xsi:type="PassportMember">
+                                        <MembershipId>Reverse/bc57b0bc-1edb-4566-8d4d-793edc21ad48</MembershipId>
+                                        <Type>Passport</Type>
+                                        <State>Accepted</State>
+                                        <Deleted>false</Deleted>
+                                        <LastChanged>2020-12-05T10:16:20Z</LastChanged>
+                                        <JoinedDate>2020-12-05T10:05:53Z</JoinedDate>
+                                        <ExpirationDate>0001-01-01T00:00:00</ExpirationDate>
+                                        <Changes />
+                                        <PassportName>test@test.fr</PassportName>
+                                        <IsPassportNameHidden>false</IsPassportNameHidden>
+                                        <PassportId>0</PassportId>
+                                        <CID>5236879171526413709</CID>
+                                        <PassportChanges />
+                                        <LookedupByCID>false</LookedupByCID>
+                                    </Member>
+                                </Members>
+                                <MembershipIsComplete>true</MembershipIsComplete>
+                            </Membership>
+                            <Membership>
+                                <MemberRole>Pending</MemberRole>
+                                <Members></Members>
+                                <MembershipIsComplete>true</MembershipIsComplete>
+                            </Membership>
+                        </Memberships>
+                        <Info>
+                            <Handle>
+                                <Id>1</Id>
+                                <Type>Messenger</Type>
+                                <ForeignId />
+                            </Handle>
+                            <InverseRequired>false</InverseRequired>
+                            <AuthorizationCriteria>Everyone</AuthorizationCriteria>
+                            <IsBot>false</IsBot>
+                        </Info>
+                        <Changes />
+                        <LastChange>2020-12-05T10:16:20Z</LastChange>
+                        <Deleted>false</Deleted>
+                    </Service>
+                </Services>
+                <OwnerNamespace>
+                    <Info>
+                        <Handle>
+                            <Id>00000000-0000-0000-0000-000000000000</Id>
+                            <IsPassportNameHidden>false</IsPassportNameHidden>
+                            <CID>0</CID>
+                        </Handle>
+                        <CreatorPuid>0</CreatorPuid>
+                        <CreatorCID>-8633146156665081703</CreatorCID>
+                        <CreatorPassportName>aeon@test.fr</CreatorPassportName>
+                        <CircleAttributes>
+                            <IsPresenceEnabled>false</IsPresenceEnabled>
+                            <Domain>WindowsLive</Domain>
+                        </CircleAttributes>
+                        <MessengerApplicationServiceCreated>false</MessengerApplicationServiceCreated>
+                    </Info>
+                    <Changes />
+                    <CreateDate>2020-12-05T10:16:20Z</CreateDate>
+                    <LastChange>2020-12-05T10:16:20Z</LastChange>
+                </OwnerNamespace>
+            </FindMembershipResult>
+        </FindMembershipResponse>
+    </soap:Body>
+</soap:Envelope>
