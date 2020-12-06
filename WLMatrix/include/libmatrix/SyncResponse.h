@@ -42,5 +42,13 @@ class SyncResponse {
             _leftRooms.push_back(leftRoom);
         }
 
+        std::vector<MatrixJoinedRoom> getJoinedRooms(){
+            return _joinedRooms;
+        }
+
+        std::unordered_map<std::string, std::any> getDirectList();
+
+        bool isRoomDirect(std::string roomId);
+        
         static SyncResponse deserializeJson(std::string json);
 };

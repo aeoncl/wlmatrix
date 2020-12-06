@@ -1,22 +1,46 @@
 #pragma once
 #include <string>
+#include "AuthResponse.h"
 class ClientInfo {
 	private :
-		int _dialectVersion;
-		std::string _login;
-		std::string _password;
-		std::string _matrixToken;
+		int _msnDialectVersion;
+		std::string _matrixServerUrl;
+		std::string _msnLogin;
+		AuthResponse _matrixAuthData;
 
 	public :
-		int getDialectVersion() { return _dialectVersion; };
-		void setDialectVersion(int dialectVersion) { _dialectVersion = dialectVersion; };
-		std::string getLogin() { return _login; };
-		void setLogin(std::string login) { _login = login; };
-		std::string getPassword() { return _password; };
-		void setPassword(std::string password) { _password = password; };
-		std::string getMatrixToken() { return _matrixToken; };
-		void setMatrixToken(std::string matrixToken) { _matrixToken = matrixToken; };
+		ClientInfo();
+		ClientInfo(const ClientInfo& obj);
+		~ClientInfo();
 
+		int getMSNDialectVersion() { return _msnDialectVersion; };
+		void setMSNDialectVersion(int dialectVersion) { _msnDialectVersion = dialectVersion; };
+
+		AuthResponse getMatrixAuthData() { return _matrixAuthData; };
+		void setMatrixAuthData(AuthResponse authData) {
+			_matrixAuthData = _matrixAuthData;
+		};
+
+		void setMatrixServerUrl(std::string url){
+			_matrixServerUrl = url;
+		};
+
+		std::string getMatrixServerUrl() {
+			return _matrixServerUrl;
+		};
+
+		std::string getMatrixToken() {
+			return _matrixAuthData.getAccessTokenAsStr();
+		}
+
+		void setMSNLogin(std::string msnLogin){
+			_msnLogin = msnLogin;
+		}
+		
+		std::string getMSNLogin(){
+			return _msnLogin;
+		}
+		
 
 };
 

@@ -5,112 +5,128 @@
                         <Version>15.01.1408.0000</Version>
                         <CacheKey>12r1:asR3A7W96sKTsje8YgB0QB5r-Ut2-_MS2VrMRtmnBbL1XalcJLX9GyyKIcFpcrmc30QDGBUe0kfY1DEp1mXGYFjTzyQwd-uu0ZOk2cLFDTNKmR-lHCTb9U07e3_fiUVnoql5DpCkW6MaiBVBeb16YGWjvOdNxFEDD5DhluIEjcTnYvYzCZkZVDB92jSllE2Yw5xEITkbFsjEJNNkA1Ur19diqrI4SkjQ3OIuRg</CacheKey>
                         <CacheKeyChanged>true</CacheKeyChanged>
-                        <PreferredHostName>m1.escargot.log1p.xyz</PreferredHostName>
+                        <PreferredHostName>localhost</PreferredHostName>
                         <SessionId>6ea4db40-0f74-4b7b-a067-97264428f0f9</SessionId>
                 </ServiceHeader>
         </soap:Header>
         <soap:Body>
-                <ABFindContactsPagedResponse xmlns="http://www.msn.com/webservices/AddressBook">
-                        <ABFindContactsPagedResult><Groups>
+        <ABFindContactsPagedResponse xmlns="http://www.msn.com/webservices/AddressBook">
+        <ABFindContactsPagedResult>
+        <Groups>
+        </Groups>
+        <Contacts>
+                <Contact>                                               
+                        <contactId>bc57b0bc-1edb-4566-8d4d-793edc21ad48</contactId>
+                        <contactInfo>
+                                <contactType>Regular</contactType>
+                                <quickName>test@test.fr</quickName>
+                                <passportName>test@test.fr</passportName>
+                                <IsPassportNameHidden>false</IsPassportNameHidden>
+                                <displayName>test@test.fr</displayName>
+                                <puid>0</puid><CID>5236879171526413709</CID>
+                                <IsNotMobileVisible>false</IsNotMobileVisible>
+                                <isMobileIMEnabled>false</isMobileIMEnabled>
+                                <isMessengerUser>true</isMessengerUser>
+                                <isFavorite>false</isFavorite>
+                                <isSmtp>false</isSmtp>
+                                <hasSpace>false</hasSpace>
+                                <spotWatchState>NoDevice</spotWatchState>
+                                <birthdate>0001-01-01T00:00:00</birthdate>
+                                <primaryEmailType>ContactEmailPersonal</primaryEmailType>
+                                <PrimaryLocation>ContactLocationPersonal</PrimaryLocation>
+                                <PrimaryPhone>ContactPhonePersonal</PrimaryPhone>
+                                <IsPrivate>false</IsPrivate>
+                                <Gender>Unspecified</Gender>
+                                <TimeZone>None</TimeZone>
+                        </contactInfo>
+                        <propertiesChanged />
+                        <fDeleted>false</fDeleted>
+                        <lastChange>2020-12-05T14:16:22Z</lastChange>
+                </Contact>
+                <Contact>
+                        <contactId>05538436-0dac-4e0d-99f0-f2954fe73088</contactId>
+                        <contactInfo>
+                                <annotations>
+                                        <Annotation>
+                                                <Name>MSN.IM.MBEA</Name>
+                                                <Value>0</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                                <Name>MSN.IM.GTC</Name>
+                                                <Value>0</Value>
+                                        </Annotation>
+                                        <Annotation>
+                                                <Name>MSN.IM.BLP</Name>
+                                                <Value>1</Value>
+                                        </Annotation></annotations>
+                                <contactType>Me</contactType>
+                                <quickName>aeon@test.fr</quickName>
+                                <passportName>aeon@test.fr</passportName>
+                                <IsPassportNameHidden>false</IsPassportNameHidden><displayName>aeon@test.fr</displayName><puid>0</puid>
+                                <CID>8633146156665081703</CID>
+                                <IsNotMobileVisible>false</IsNotMobileVisible>
+                                <isMobileIMEnabled>false</isMobileIMEnabled>
+                                <isMessengerUser>false</isMessengerUser>
+                                <isFavorite>false</isFavorite>
+                                <isSmtp>false</isSmtp>
+                                <hasSpace>false</hasSpace>
+                                <spotWatchState>NoDevice</spotWatchState>
+                                <birthdate>0001-01-01T00:00:00</birthdate>
+                                <primaryEmailType>ContactEmailPersonal</primaryEmailType>
+                                <PrimaryLocation>ContactLocationPersonal</PrimaryLocation>
+                                <PrimaryPhone>ContactPhonePersonal</PrimaryPhone>
+                                <IsPrivate>false</IsPrivate>
+                                <Gender>Unspecified</Gender>
+                                <TimeZone>None</TimeZone>
+                        </contactInfo>
+                        <propertiesChanged />
+                        <fDeleted>false</fDeleted>
+                        <lastChange>2020-12-05T14:16:22Z</lastChange>
+                </Contact>
+        </Contacts>
+        <CircleResult>
+                <Circles>
+                        <CircleInverseInfo>
+                                       <Content>
+                                               <Handle>
+                                                       <Id>00000000-0000-0000-0009-7ca023205f2b</Id>
+                                               </Handle>
+                                               <Info>
+                                                       <Domain>1</Domain>
+                                                       <HostedDomain>live.com</HostedDomain>
+                                                       <Type>2</Type>
+                                                       <MembershipAccess>0</MembershipAccess>
+                                                       <IsPresenceEnabled>true</IsPresenceEnabled>
+                                                       <RequestMembershipOption>0</RequestMembershipOption>
+                                                       <DisplayName>battle-tendency</DisplayName>
+                                                       <ProfileLastUpdated>0001-01-01T00:00:00</ProfileLastUpdated>
+                                                       <Changes />
+                                                       <CreateDate>0001-01-01T00:00:00</CreateDate>
+                                                       <LastUpdated>2020-12-05T14:16:22Z</LastUpdated>
+                                               </Info>
+                                       </Content>
+                                       <PersonalInfo>
+                                               <MembershipInfo>
+                                                       <CirclePersonalMembership>
+                                                               <Role>Admin</Role>
+                                                               <State>Accepted</State>
+                                                       </CirclePersonalMembership>
+                                               </MembershipInfo>
+                                               <Name>battle-tendency</Name>
+                                               <IsNotMobileVisible>false</IsNotMobileVisible>
+                                               <IsFavorite>false</IsFavorite>
+                                               <IsFamily>false</IsFamily>
+                                               <Changes />
+                                       </PersonalInfo>
+                                       <Deleted>false</Deleted>
+                                        </CircleInverseInfo>
+                                </Circles>
+                                <CircleTicket>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;SignedTicket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ver="1" keyVer="1"&gt;&lt;Data&gt;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8VGlja2V0IHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiPg0KICA8Q2lyY2xlIElkPSIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwOS03Y2EwMjMyMDVmMmIiIEhvc3RlZERvbWFpbj0ibGl2ZS5jb20iIC8+DQogIDxUUz4wMDAwLTAxLTAxVDAwOjAwOjAwPC9UUz4NCiAgPENJRD4tODYzMzE0NjE1NjY2NTA4MTcwMzwvQ0lEPg0KPC9UaWNrZXQ+&lt;/Data&gt;&lt;Sig&gt;g7KO/dasLvIDT+X6Rh/joPRjd9zrvriEigFxHNTk4+RFPdr7HtpmvDiUVFGsy0OMXEVgeW6yK+OPOYzkcG3WzgwTjtTsfA57dJy2KzZIdpUwy96qAGdoFGtIXDrKEUz1886mXqmuBGqN+EEGax4aIpwdo+jWZR1YWgqMN+KdE7FrXwKd1gUVKIAmv2YIFDt/xLhR80gHx1rGD+Kw7zdWN4qd6RlnWkMnSe7HLEKVXXc9n/nhliZosuttULLeTzZpI/dUK6xWPyVhn6JqXVKV6kL9RPXXKu0d4NJ9jJiSJY7+GaWx2u+mRZDnW6ICaPZKluyfVgegl024zwyIdGisyw==&lt;/Sig&gt;&lt;/SignedTicket&gt;
 
-                                        </Groups><Contacts><Contact>
-                                                                <contactId>bc57b0bc-1edb-4566-8d4d-793edc21ad48</contactId>
-        <contactInfo><contactType>Regular</contactType>
-                <quickName>test@test.fr</quickName><passportName>test@test.fr</passportName>
-                <IsPassportNameHidden>false</IsPassportNameHidden>
-                <displayName>test@test.fr</displayName>
-                <puid>0</puid><CID>5236879171526413709</CID>
-                <IsNotMobileVisible>false</IsNotMobileVisible>
-                <isMobileIMEnabled>false</isMobileIMEnabled>
-                <isMessengerUser>true</isMessengerUser>
-                <isFavorite>false</isFavorite>
-                <isSmtp>false</isSmtp>
-                <hasSpace>false</hasSpace>
-                <spotWatchState>NoDevice</spotWatchState>
-                <birthdate>0001-01-01T00:00:00</birthdate><primaryEmailType>ContactEmailPersonal</primaryEmailType>
-                <PrimaryLocation>ContactLocationPersonal</PrimaryLocation>
-                <PrimaryPhone>ContactPhonePersonal</PrimaryPhone>
-                <IsPrivate>false</IsPrivate>
-                <Gender>Unspecified</Gender>
-                <TimeZone>None</TimeZone>
-        </contactInfo>
-        <propertiesChanged />
-        <fDeleted>false</fDeleted>
-        <lastChange>2020-12-05T14:16:22Z</lastChange>
-                                                                </Contact><Contact>
-                <contactId>05538436-0dac-4e0d-99f0-f2954fe73088</contactId>
-                <contactInfo>
-                        <annotations>
-                                <Annotation>
-                                        <Name>MSN.IM.MBEA</Name>
-                                        <Value>0</Value>
-                                </Annotation>
-                                <Annotation>
-                                        <Name>MSN.IM.GTC</Name>
-                                        <Value>0</Value>
-                                </Annotation>
-                                <Annotation>
-                                        <Name>MSN.IM.BLP</Name>
-                                        <Value>1</Value>
-                                </Annotation></annotations>
-                        <contactType>Me</contactType>
-                        <quickName>aeon@test.fr</quickName>
-                        <passportName>aeon@test.fr</passportName>
-                        <IsPassportNameHidden>false</IsPassportNameHidden><displayName>aeon@test.fr</displayName><puid>0</puid>
-                        <CID>-8633146156665081703</CID>
-                        <IsNotMobileVisible>false</IsNotMobileVisible>
-                        <isMobileIMEnabled>false</isMobileIMEnabled>
-                        <isMessengerUser>false</isMessengerUser>
-                        <isFavorite>false</isFavorite>
-                        <isSmtp>false</isSmtp>
-                        <hasSpace>false</hasSpace>
-                        <spotWatchState>NoDevice</spotWatchState>
-                        <birthdate>0001-01-01T00:00:00</birthdate>
-                        <primaryEmailType>ContactEmailPersonal</primaryEmailType>
-                        <PrimaryLocation>ContactLocationPersonal</PrimaryLocation>
-                        <PrimaryPhone>ContactPhonePersonal</PrimaryPhone>
-                        <IsPrivate>false</IsPrivate>
-                        <Gender>Unspecified</Gender>
-                        <TimeZone>None</TimeZone>
-                </contactInfo>
-                <propertiesChanged />
-                <fDeleted>false</fDeleted>
-                <lastChange>2020-12-05T14:16:22Z</lastChange>
-        </Contact></Contacts><CircleResult><Circles><CircleInverseInfo>
-                                                                                        <Content>
-                                                                                                <Handle>
-                                                                                                        <Id>00000000-0000-0000-0009-7ca023205f2b</Id>
-                                                                                                </Handle>
-                                                                                                <Info>
-                                                                                                        <Domain>1</Domain>
-                                                                                                        <HostedDomain>live.com</HostedDomain>
-                                                                                                        <Type>2</Type>
-                                                                                                        <MembershipAccess>0</MembershipAccess>
-                                                                                                        <IsPresenceEnabled>true</IsPresenceEnabled>
-                                                                                                        <RequestMembershipOption>0</RequestMembershipOption>
-                                                                                                        <DisplayName>battle-tendency</DisplayName>
-                                                                                                        <ProfileLastUpdated>0001-01-01T00:00:00</ProfileLastUpdated>
-                                                                                                        <Changes />
-                                                                                                        <CreateDate>0001-01-01T00:00:00</CreateDate>
-                                                                                                        <LastUpdated>2020-12-05T14:16:22Z</LastUpdated>
-                                                                                                </Info>
-                                                                                        </Content>
-                                                                                        <PersonalInfo>
-                                                                                                <MembershipInfo>
-                                                                                                        <CirclePersonalMembership>
-                                                                                                                <Role>Admin</Role>
-                                                                                                                <State>Accepted</State>
-                                                                                                        </CirclePersonalMembership>
-                                                                                                </MembershipInfo>
-                                                                                                <Name>battle-tendency</Name>
-                                                                                                <IsNotMobileVisible>false</IsNotMobileVisible>
-                                                                                                <IsFavorite>false</IsFavorite>
-                                                                                                <IsFamily>false</IsFamily>
-                                                                                                <Changes />
-                                                                                        </PersonalInfo>
-                                                                                        <Deleted>false</Deleted>
-                                                                                </CircleInverseInfo></Circles><CircleTicket>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;SignedTicket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ver="1" keyVer="1"&gt;&lt;Data&gt;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8VGlja2V0IHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiPg0KICA8Q2lyY2xlIElkPSIwMDAwMDAwMC0wMDAwLTAwMDAtMDAwOS03Y2EwMjMyMDVmMmIiIEhvc3RlZERvbWFpbj0ibGl2ZS5jb20iIC8+DQogIDxUUz4wMDAwLTAxLTAxVDAwOjAwOjAwPC9UUz4NCiAgPENJRD4tODYzMzE0NjE1NjY2NTA4MTcwMzwvQ0lEPg0KPC9UaWNrZXQ+&lt;/Data&gt;&lt;Sig&gt;g7KO/dasLvIDT+X6Rh/joPRjd9zrvriEigFxHNTk4+RFPdr7HtpmvDiUVFGsy0OMXEVgeW6yK+OPOYzkcG3WzgwTjtTsfA57dJy2KzZIdpUwy96qAGdoFGtIXDrKEUz1886mXqmuBGqN+EEGax4aIpwdo+jWZR1YWgqMN+KdE7FrXwKd1gUVKIAmv2YIFDt/xLhR80gHx1rGD+Kw7zdWN4qd6RlnWkMnSe7HLEKVXXc9n/nhliZosuttULLeTzZpI/dUK6xWPyVhn6JqXVKV6kL9RPXXKu0d4NJ9jJiSJY7+GaWx2u+mRZDnW6ICaPZKluyfVgegl024zwyIdGisyw==&lt;/Sig&gt;&lt;/SignedTicket&gt;</CircleTicket>
-                                        </CircleResult><Ab>
+                                </CircleTicket>
+                        </CircleResult>
+                                        
+                        <Ab>
                                         <abId>00000000-0000-0000-0000-000000000000</abId>
                                         <abInfo>
                                                 <ownerPuid>0</ownerPuid>
@@ -130,7 +146,7 @@
                                         <DynamicItemLastChanged>0001-01-01T00:00:00</DynamicItemLastChanged>
                                         <createDate>2020-11-14T14:18:52Z</createDate>
                                         <propertiesChanged />
-                                </Ab>
+                        </Ab>
                         </ABFindContactsPagedResult>
                 </ABFindContactsPagedResponse>
         </soap:Body>

@@ -6,7 +6,7 @@
 
 
 /* Constructor */
-TCPServer::TCPServer(std::string url, int port, ClientInfoRepository& repo) {
+TCPServer::TCPServer(std::string url, int port, ClientInfoRepository* repo) {
 	this->_clientRepo = repo;
 	this->_port = port;
 	this->_listenSocket = new WinSockSocket(url, port);

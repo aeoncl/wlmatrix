@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "AuthResponse.h"
+#include "SyncResponse.h"
 #include "pugixml.hpp"
 
 class MatrixToMSNSoap{
@@ -9,4 +10,5 @@ class MatrixToMSNSoap{
         std::string getAllTokens(std::string token, std::string today, std::string tomorrow);
     public :
         std::string getRST2Response(AuthResponse matrixResponse);
+        std::string getFindMembershipResponse(SyncResponse matrixResponse);
 };

@@ -10,11 +10,11 @@ using namespace listener;
 class MSNSoapServer {
     private:
         http_listener* _listener;
-        ClientInfoRepository _repo;
+        ClientInfoRepository* _repo;
         void onGetRequestReceveid(http_request request);
         void onPostRequestReceveid(http_request request);
     public:
-        MSNSoapServer(ClientInfoRepository& repo);
+        MSNSoapServer(ClientInfoRepository* repo);
         MSNSoapServer(const MSNSoapServer& obj);
         ~MSNSoapServer();
         void listen();

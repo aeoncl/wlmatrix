@@ -31,4 +31,8 @@ class MatrixEvent {
             _content.emplace(name, std::make_any<T>(value));
         };
 
+        std::unordered_map<std::string, std::any> getContent(){
+            return _content;
+        };
+
 };

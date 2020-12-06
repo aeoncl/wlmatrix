@@ -1,0 +1,28 @@
+<Contact>                                               
+    <contactId>bc57b0bc-1edb-4566-8d4d-793edc21ad48</contactId>
+    <contactInfo>
+            <contactType>Regular</contactType>
+            <quickName>test@test.fr</quickName>
+            <passportName>test@test.fr</passportName>
+            <IsPassportNameHidden>false</IsPassportNameHidden>
+            <displayName>test@test.fr</displayName>
+            <puid>0</puid><CID>5236879171526413709</CID>
+            <IsNotMobileVisible>false</IsNotMobileVisible>
+            <isMobileIMEnabled>false</isMobileIMEnabled>
+            <isMessengerUser>true</isMessengerUser>
+            <isFavorite>false</isFavorite>
+            <isSmtp>false</isSmtp>
+            <hasSpace>false</hasSpace>
+            <spotWatchState>NoDevice</spotWatchState>
+            <birthdate>0001-01-01T00:00:00</birthdate>
+            <primaryEmailType>ContactEmailPersonal</primaryEmailType>
+            <PrimaryLocation>ContactLocationPersonal</PrimaryLocation>
+            <PrimaryPhone>ContactPhonePersonal</PrimaryPhone>
+            <IsPrivate>false</IsPrivate>
+            <Gender>Unspecified</Gender>
+            <TimeZone>None</TimeZone>
+    </contactInfo>
+    <propertiesChanged />
+    <fDeleted>false</fDeleted>
+    <lastChange>2020-12-05T14:16:22Z</lastChange>
+</Contact>

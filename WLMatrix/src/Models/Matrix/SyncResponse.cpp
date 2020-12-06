@@ -1,6 +1,9 @@
 #include "SyncResponse.h"
 #include "cpprest/json.h"
 #include "MatrixAccountData.h"
+#include <unordered_map>
+#include <any>
+
 using namespace web;
 using namespace json;
 using namespace utility;
@@ -16,6 +19,26 @@ SyncResponse SyncResponse::deserializeJson(std::string json) {
                 roomToAdd.setId(utf16_to_utf8(room.first));
                 response.addJoinedRoom(roomToAdd);
         }
-
         return response;
 }
+
+std::unordered_map<std::string, std::any> SyncResponse::getDirectList() {
+        auto test = this->_accountData.getEventByType("m.direct");
+        return test.getContent();
+}
+
+bool SyncResponse::isRoomDirect(std::string roomId){
+        auto directs = getDirectList();
+        for(auto direct : directs){
+        auto roomArrayForMember = std::any_cast<std::vector<std::string>>(direct.second);
+                for(auto currentRoomId : roomArrayForMember){
+                        if(currentRoomId == roomId){
+                                return true;
+                        }
+                }
+        }
+        return false;
+}
+
+
+

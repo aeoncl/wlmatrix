@@ -6,8 +6,13 @@
 #include "SyncResponse.h"
 class MatrixBackend {
     private :
+        std::string _url;
+        std::string _token;
         SyncResponse sync(AuthResponse authData, std::string url, std::string timeStamp, MatrixPresence status);
     public :
+        MatrixBackend(){};
+        MatrixBackend(std::string url, std::string token) : _url(url), _token(token){};
+
         AuthResponse authenticate(MatrixCredentials matrixServer);
-        SyncResponse initialSync(AuthResponse authData, std::string url, std::string timeStamp, MatrixPresence status);
+        SyncResponse initialSync(std::string timeStamp, MatrixPresence status);
 };

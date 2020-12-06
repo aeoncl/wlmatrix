@@ -1,6 +1,10 @@
 #include "ClientInfoRepository.h"
 #include <iostream>
 
+ClientInfoRepository::ClientInfoRepository(){
+    std::cout << "Created ClientInfoRepository" << std::endl;
+}
+
 /* Copystructor */
 ClientInfoRepository::ClientInfoRepository(const ClientInfoRepository& obj) {
     this->_clients = obj._clients;
@@ -15,7 +19,17 @@ ClientInfoRepository::~ClientInfoRepository() {
 ClientInfo* ClientInfoRepository::findClientByLogin(std::string login) {
     for (auto client : this->_clients) {
         auto current = client.get();
-        if (current->getLogin() == login) {
+        if (current->getMSNLogin() == login) {
+            return current;
+        }
+    }
+    return nullptr;
+}
+
+ClientInfo* ClientInfoRepository::findClientByMatrixToken(std::string token) {
+    for (auto client : this->_clients) {
+        auto current = client.get();
+        if (current->getMatrixToken() == token) {
             return current;
         }
     }

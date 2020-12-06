@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
 #include <string>
-#include "ClientInfo.h"
+#include "ClientInfoRepository.h"
 #include "SoapResponse.h"
 
 class ISoapEndpointHandler {
 	public :
-		virtual SoapResponse handleRequest(std::string requestBody, std::string soapAction, ClientInfo* clientInfo) const { return SoapResponse(); };
+		virtual SoapResponse handleRequest(std::string requestBody, std::string soapAction, ClientInfoRepository* clientInfo) const { return SoapResponse(); };
 };

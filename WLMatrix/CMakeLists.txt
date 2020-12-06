@@ -50,9 +50,11 @@ add_executable(
     ${XML_DIR}/pugixml.cpp
     )
 
+target_include_directories(${PROJECT_NAME} PUBLIC include/boost)
 target_include_directories(${PROJECT_NAME} PUBLIC include/wlmatrix)
 target_include_directories(${PROJECT_NAME} PUBLIC include/libmatrix)
 target_include_directories(${PROJECT_NAME} PUBLIC include)
+
 
 
 find_package(cpprestsdk REQUIRED)

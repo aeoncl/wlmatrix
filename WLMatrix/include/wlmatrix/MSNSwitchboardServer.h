@@ -10,6 +10,6 @@ class MSNSwitchboardServer : public TCPServer {
 			client->listen();
 		};
 	public :
-		MSNSwitchboardServer(ClientInfoRepository& repo) : TCPServer("127.0.0.1", 1864, repo) {};
+		MSNSwitchboardServer(ClientInfoRepository* repo) : TCPServer("127.0.0.1", 1864, repo) {};
 };
 

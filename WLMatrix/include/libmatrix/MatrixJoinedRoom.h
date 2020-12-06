@@ -10,7 +10,6 @@ class MatrixJoinedRoom {
         std::vector<MatrixEvent> _state;
         std::vector<MatrixEvent> _ephemeral;
 
-
     public :
         MatrixJoinedRoom(std::string id) : _id(id) {};
         MatrixJoinedRoom() {};
@@ -34,4 +33,22 @@ class MatrixJoinedRoom {
             _timeline.push_back(event);
         }
 
+        std::vector<MatrixEvent> getStateEventsForType(std::string type){
+            std::vector<MatrixEvent> out;
+            for(auto event : _state){
+                if(event.getType() == type){
+                    out.push_back(event);
+                }
+            }
+            return out;
+        }
+
+        bool containsInvitedMember() {
+            for(auto stateEvent : _state){
+                if(stateEvent.getType() == "m.room.member" && stateEvent.getProperty<std::string>("membership") == "join"){
+                    return true;
+                }
+            }
+            return false;
+        }
 }; 

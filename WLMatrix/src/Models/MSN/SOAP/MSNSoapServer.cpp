@@ -14,7 +14,7 @@ using namespace http;
 using namespace experimental;
 using namespace listener;
 /* Constructor */
-MSNSoapServer::MSNSoapServer(ClientInfoRepository &repo)
+MSNSoapServer::MSNSoapServer(ClientInfoRepository* repo)
 {
     _repo = repo;
     http::uri uri(L"http://127.0.0.1:8080");
@@ -84,7 +84,7 @@ void MSNSoapServer::onPostRequestReceveid(http_request request)
         soapAction = utility::conversions::to_utf8string(request.headers()[L"SOAPAction"]);
     }
     std::cout << ">> POST " << requestPath  << " : " << soapAction << std::endl;
-    auto soapResponse = handler->handleRequest(xmlRequestBody, soapAction, new ClientInfo());
+    auto soapResponse = handler->handleRequest(xmlRequestBody, soapAction, _repo);
     
     http_response response(soapResponse.getStatusCode());    
     response.set_body(soapResponse.getBody(), "application/soap+xml");

@@ -1,0 +1,41 @@
+<Contact>
+    <contactId>05538436-0dac-4e0d-99f0-f2954fe73088</contactId>
+    <contactInfo>
+            <annotations>
+                    <Annotation>
+                            <Name>MSN.IM.MBEA</Name>
+                            <Value>0</Value>
+                    </Annotation>
+                    <Annotation>
+                            <Name>MSN.IM.GTC</Name>
+                            <Value>0</Value>
+                    </Annotation>
+                    <Annotation>
+                            <Name>MSN.IM.BLP</Name>
+                            <Value>1</Value>
+                    </Annotation>
+            </annotations>
+            <contactType>Me</contactType>
+            <quickName>aeon@test.fr</quickName>
+            <passportName>aeon@test.fr</passportName>
+            <IsPassportNameHidden>false</IsPassportNameHidden><displayName>aeon@test.fr</displayName><puid>0</puid>
+            <CID>-8633146156665081703</CID>
+            <IsNotMobileVisible>false</IsNotMobileVisible>
+            <isMobileIMEnabled>false</isMobileIMEnabled>
+            <isMessengerUser>false</isMessengerUser>
+            <isFavorite>false</isFavorite>
+            <isSmtp>false</isSmtp>
+            <hasSpace>false</hasSpace>
+            <spotWatchState>NoDevice</spotWatchState>
+            <birthdate>0001-01-01T00:00:00</birthdate>
+            <primaryEmailType>ContactEmailPersonal</primaryEmailType>
+            <PrimaryLocation>ContactLocationPersonal</PrimaryLocation>
+            <PrimaryPhone>ContactPhonePersonal</PrimaryPhone>
+            <IsPrivate>false</IsPrivate>
+            <Gender>Unspecified</Gender>
+            <TimeZone>None</TimeZone>
+    </contactInfo>
+    <propertiesChanged />
+    <fDeleted>false</fDeleted>
+    <lastChange>2020-12-05T14:16:22Z</lastChange>
+</Contact>

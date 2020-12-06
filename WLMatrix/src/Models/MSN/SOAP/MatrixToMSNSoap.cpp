@@ -6,6 +6,7 @@
 #include <ctime>
 #include "boost/date_time/gregorian/gregorian.hpp"
 
+/* RST2 */
 std::string MatrixToMSNSoap::getRST2Response(AuthResponse matrixResponse)
 {
     pugi::xml_document rst2Template;
@@ -49,3 +50,48 @@ std::string MatrixToMSNSoap::forgeRST2Token(std::string domain, std::string toke
     }
     return out;
 }
+
+
+/* ABServices */
+std::string MatrixToMSNSoap::getFindMembershipResponse(SyncResponse matrixResponse) {
+     pugi::xml_document xml;
+
+        xml.load_string(MSNPSoapMessages::AB_FIND_MEMBERSHIP_RESPONSE.c_str());
+        pugi::xpath_node memberships = xml.child("soap:Envelope").child("soap:Body").child("FindMembershipResponse").child("FindMembershipResult").child("Services").child("Service").child("Memberships");
+        
+        auto joinedRooms = matrixResponse.getJoinedRooms();
+        for(auto joinedRoom : joinedRooms) {
+            if(matrixResponse.isRoomDirect(joinedRoom.getId())){
+                //room is a dm.
+
+                if(joinedRoom.containsInvitedMember()){
+                    //is in reverse too
+                }
+
+            }else{
+                //room is a circle.
+                //circles are automatically in reverse.
+            }
+        }
+
+        
+        /*headerTimeStamp.node().child("wsu:Created").append_child(pugi::node_pcdata).set_value(todayStr.c_str());
+        headerTimeStamp.node().child("wsu:Expires").append_child(pugi::node_pcdata).set_value(tomorrowStr.c_str());
+
+        pugi::xpath_node headerPuid = rst2Template.child("S:Envelope").child("S:Header").child("psf:pp");
+        headerPuid.node().child("psf:serverInfo").attribute("ServerTime").set_value(todayStr.c_str());
+        headerPuid.node().child("psf:credProperties").find_child_by_attribute("Name", "CID").append_child(pugi::node_pcdata).set_value(matrixResponse.getUserIdAsStr().c_str());
+        headerPuid.node().child("psf:credProperties").find_child_by_attribute("Name", "AuthMembername").append_child(pugi::node_pcdata).set_value(matrixResponse.getUserIdAsStr().c_str());
+        
+        pugi::xpath_node bodyTokenSpace = rst2Template.child("S:Envelope").child("S:Body").child("wst:RequestSecurityTokenResponseCollection");
+        pugi::xml_node token1 = forgeRST2Token("messengerclear.live.com", matrixResponse.getAccessTokenAsStr(), todayStr, tomorrowStr, 1);
+        bodyTokenSpace.node().insert_child_after(pugi::node_element, token1);
+        
+        XMLStringWriter writer;
+        auto test = writer.node_to_string(rst2Template);
+
+        std::cout << "TEST: " << test << std::endl;*/
+
+        return "";
+
+};

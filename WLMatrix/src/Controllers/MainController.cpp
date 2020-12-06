@@ -11,20 +11,20 @@ MainController::MainController() {
 	std::thread msnSwitchboardThread([this] {createMSNSwitchboardServer(this->_repo); });
 	msnSwitchboardThread.detach();
 	
-	_soapServer = new MSNSoapServer(*_repo);
+	_soapServer = new MSNSoapServer(_repo);
 	_soapServer->listen();
 }
 
 /* Private */
 void MainController::createMSNNotifServer(ClientInfoRepository* repo) {
 	//ran in another thread
-	MSNNotificationServer msnNotificationServer(*repo);
+	MSNNotificationServer msnNotificationServer(repo);
 	msnNotificationServer.listen();
 }
 
 /* Private */
 void MainController::createMSNSwitchboardServer(ClientInfoRepository* repo) {
 	//ran in another thread
-	MSNSwitchboardServer msnSwitchboardServer(*repo);
+	MSNSwitchboardServer msnSwitchboardServer(repo);
 	msnSwitchboardServer.listen();
 }

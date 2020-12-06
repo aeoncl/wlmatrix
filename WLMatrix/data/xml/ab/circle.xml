@@ -1,0 +1,34 @@
+<CircleInverseInfo>
+    <Content>
+            <Handle>
+                    <Id>00000000-0000-0000-0009-7ca023205f2b</Id>
+            </Handle>
+            <Info>
+                    <Domain>1</Domain>
+                    <HostedDomain>live.com</HostedDomain>
+                    <Type>2</Type>
+                    <MembershipAccess>0</MembershipAccess>
+                    <IsPresenceEnabled>true</IsPresenceEnabled>
+                    <RequestMembershipOption>0</RequestMembershipOption>
+                    <DisplayName>battle-tendency</DisplayName>
+                    <ProfileLastUpdated>0001-01-01T00:00:00</ProfileLastUpdated>
+                    <Changes />
+                    <CreateDate>0001-01-01T00:00:00</CreateDate>
+                    <LastUpdated>2020-12-05T14:16:22Z</LastUpdated>
+            </Info>
+    </Content>
+    <PersonalInfo>
+            <MembershipInfo>
+                    <CirclePersonalMembership>
+                            <Role>Admin</Role>
+                            <State>Accepted</State>
+                    </CirclePersonalMembership>
+            </MembershipInfo>
+            <Name>battle-tendency</Name>
+            <IsNotMobileVisible>false</IsNotMobileVisible>
+            <IsFavorite>false</IsFavorite>
+            <IsFamily>false</IsFamily>
+            <Changes />
+    </PersonalInfo>
+    <Deleted>false</Deleted>
+    </CircleInverseInfo>
