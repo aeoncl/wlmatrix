@@ -1,6 +1,7 @@
 # WLMatrix
 A translation layer between MSNP18 and the Matrix Protocol
-Making Windows Live Messenger 2009 a Matrix Client while keeping all of it's functionality.
+making WLM 2009 a Matrix client while keeping all of it's functionality.
+
 ![WLMatrix logo](https://i.imgur.com/62Rx1Fq.png)
 
 ## How it will work
@@ -9,7 +10,7 @@ It translates the commands & requests from MSNP to the Matrix Protocol.
 It's stateless.
 
 ## Current state
-🟢 Client patch (will create a different repo for that stuff)
+🟢 Client patch to connect to WLMatrix (will create a different repo for that stuff)
 
 🟠 Authentication (from MSN -> Matrix) kinda working, need to clean up implementation to handle error codes. The typical @name:homeserver synthax of matrix cannot work with wlm, i use this special one instead : {name@homeserver-port} when the port is ommited, 443 will be default.
 
