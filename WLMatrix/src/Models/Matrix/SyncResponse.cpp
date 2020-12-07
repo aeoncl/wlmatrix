@@ -40,5 +40,21 @@ bool SyncResponse::isRoomDirect(std::string roomId){
         return false;
 }
 
+std::string SyncResponse::getDirectBuddy(std::string roomId){
+        auto directs = getDirectList();
+        for(auto direct : directs){
+        auto roomArrayForMember = std::any_cast<std::vector<std::string>>(direct.second);
+                for(auto currentRoomId : roomArrayForMember){
+                        if(currentRoomId == roomId){
+                                return direct.first;
+                        }
+                }
+        }
+        return "";
+}
+
+
+
+
 
 

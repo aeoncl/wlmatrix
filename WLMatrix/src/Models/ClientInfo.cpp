@@ -5,7 +5,7 @@
         };
 
 		ClientInfo::ClientInfo(const ClientInfo& obj){
-            _matrixAuthData = obj._matrixAuthData;
+            _matrixToken = obj._matrixToken;
             _matrixServerUrl = obj._matrixServerUrl;
             _msnDialectVersion = obj._msnDialectVersion;
             _msnLogin = obj._msnLogin;

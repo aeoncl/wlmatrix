@@ -5,6 +5,11 @@
 #include <chrono>
 #include <ctime>
 #include "boost/date_time/gregorian/gregorian.hpp"
+#include "MSNMember.h"
+#include "CryptoUtils.h"
+#include "MSNUtils.h"
+#include <vector>
+
 
 /* RST2 */
 std::string MatrixToMSNSoap::getRST2Response(AuthResponse matrixResponse)
@@ -59,18 +64,31 @@ std::string MatrixToMSNSoap::getFindMembershipResponse(SyncResponse matrixRespon
         xml.load_string(MSNPSoapMessages::AB_FIND_MEMBERSHIP_RESPONSE.c_str());
         pugi::xpath_node memberships = xml.child("soap:Envelope").child("soap:Body").child("FindMembershipResponse").child("FindMembershipResult").child("Services").child("Service").child("Memberships");
         
+        std::vector<MSNMember> allowList;
+        std::vector<MSNMember> reverseList;
+        std::vector<MSNMember> blockList;
+        std::vector<MSNMember> pendingList;
+
         auto joinedRooms = matrixResponse.getJoinedRooms();
         for(auto joinedRoom : joinedRooms) {
-            if(matrixResponse.isRoomDirect(joinedRoom.getId())){
+            auto directBuddy = matrixResponse.getDirectBuddy(joinedRoom.getId());
+            if(directBuddy != ""){
                 //room is a dm.
+                MSNMember member;
+                member.setUid(CryptoUtils::getMD5uuid(joinedRoom.getId()));
+                member.setState(MSNMembershipState::Accepted);
+                member.setPassportName(MSNUtils::getMSNUriForMatrixUri(directBuddy));
+                allowList.push_back(member);
 
-                if(joinedRoom.containsInvitedMember()){
+                if(joinedRoom.containsInvitedMember()) {
                     //is in reverse too
+                    reverseList.push_back(member);
                 }
 
             }else{
                 //room is a circle.
                 //circles are automatically in reverse.
+                //No circles in memberships.
             }
         }
 

@@ -49,6 +49,8 @@ class SyncResponse {
         std::unordered_map<std::string, std::any> getDirectList();
 
         bool isRoomDirect(std::string roomId);
+
+        std::string getDirectBuddy(std::string roomId);
         
         static SyncResponse deserializeJson(std::string json);
 };

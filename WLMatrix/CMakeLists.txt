@@ -47,6 +47,7 @@ add_executable(
     ${UTILS_DIR}/CryptoUtils.cpp
     ${UTILS_DIR}/StringUtils.cpp
     ${UTILS_DIR}/DateUtils.cpp
+    ${UTILS_DIR}/MSNUtils.cpp
     ${XML_DIR}/pugixml.cpp
     )
 

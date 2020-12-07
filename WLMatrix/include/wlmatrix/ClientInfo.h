@@ -6,7 +6,7 @@ class ClientInfo {
 		int _msnDialectVersion;
 		std::string _matrixServerUrl;
 		std::string _msnLogin;
-		AuthResponse _matrixAuthData;
+		std::string _matrixToken;
 
 	public :
 		ClientInfo();
@@ -15,11 +15,6 @@ class ClientInfo {
 
 		int getMSNDialectVersion() { return _msnDialectVersion; };
 		void setMSNDialectVersion(int dialectVersion) { _msnDialectVersion = dialectVersion; };
-
-		AuthResponse getMatrixAuthData() { return _matrixAuthData; };
-		void setMatrixAuthData(AuthResponse authData) {
-			_matrixAuthData = _matrixAuthData;
-		};
 
 		void setMatrixServerUrl(std::string url){
 			_matrixServerUrl = url;
@@ -30,7 +25,11 @@ class ClientInfo {
 		};
 
 		std::string getMatrixToken() {
-			return _matrixAuthData.getAccessTokenAsStr();
+			return _matrixToken;
+		}
+
+		void setMatrixToken(std::string matrixToken) {
+			_matrixToken = matrixToken;
 		}
 
 		void setMSNLogin(std::string msnLogin){

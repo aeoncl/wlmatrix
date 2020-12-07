@@ -7,6 +7,11 @@ using namespace json;
 using namespace utility;
 using namespace conversions;
 
+    MatrixCredentials::MatrixCredentials(std::string login) {
+        _loginString = login;
+        parseLogin(login);
+    }
+
     MatrixCredentials::MatrixCredentials(std::string login, std::string password) {
         _loginString = login;
         _password = password;

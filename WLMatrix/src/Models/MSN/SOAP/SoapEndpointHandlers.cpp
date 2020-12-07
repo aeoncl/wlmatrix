@@ -14,11 +14,7 @@ SoapResponse RST2::handleRequest(std::string requestBody, std::string soapAction
 
         MatrixBackend matrix;
         AuthResponse matrixResponse = matrix.authenticate(creds);
-
-        auto info = repo->findClientByLogin(creds.getLoginString());
-        info->setMatrixServerUrl(creds.getUrl());
-        info->setMatrixAuthData(matrixResponse);
-
+                
         // try and create responses
         MatrixToMSNSoap mat2msn;
         auto xmlPayload = mat2msn.getRST2Response(matrixResponse);
@@ -28,22 +24,20 @@ SoapResponse RST2::handleRequest(std::string requestBody, std::string soapAction
 
 SoapResponse SharingService::handleRequest(std::string requestBody, std::string soapAction, ClientInfoRepository* repo) const {
         std::cout << "Test: " << requestBody << std::endl;
-
         MSNSoapToMatrix msn2mat;
         auto token = msn2mat.getMatrixToken(requestBody);
-
         auto info = repo->findClientByMatrixToken(token);
 
         if(soapAction == "http://www.msn.com/webservices/AddressBook/FindMembership"){
 
-                        MatrixBackend matrix(token, info->getMatrixServerUrl());
-                        auto matrixResult = matrix.initialSync("", MatrixPresence::Online);
-                        
-                        MatrixToMSNSoap mat2msn;
-                        mat2msn.getFindMembershipResponse(matrixResult);
-                        std::ifstream ifs("D:\\Aeon\\Documents\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\ab\\find_membership.xml");
-                        std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
-                        return SoapResponse(content, 200);
+                MatrixBackend matrix(info->getMatrixServerUrl(), token);
+                auto matrixResult = matrix.initialSync("", MatrixPresence::Online);
+                
+                MatrixToMSNSoap mat2msn;
+                auto contentTest = mat2msn.getFindMembershipResponse(matrixResult);
+                std::ifstream ifs("D:\\Aeon\\Documents\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\ab\\find_membership.xml");
+                std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
+                return SoapResponse(content, 200);
         }
         return SoapResponse("", 200);
 }
