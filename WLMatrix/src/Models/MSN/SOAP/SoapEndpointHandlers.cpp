@@ -34,10 +34,10 @@ SoapResponse SharingService::handleRequest(std::string requestBody, std::string 
                 auto matrixResult = matrix.initialSync("", MatrixPresence::Online);
                 
                 MatrixToMSNSoap mat2msn;
-                auto contentTest = mat2msn.getFindMembershipResponse(matrixResult);
+                auto contentTest = mat2msn.getFindMembershipResponse(matrixResult, info->getMSNLogin());
                 std::ifstream ifs("D:\\Aeon\\Documents\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\ab\\find_membership.xml");
                 std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
-                return SoapResponse(content, 200);
+                return SoapResponse(contentTest, 200);
         }
         return SoapResponse("", 200);
 }

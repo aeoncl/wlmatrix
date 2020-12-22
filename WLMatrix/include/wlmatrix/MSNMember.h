@@ -1,9 +1,10 @@
 #pragma once
 #include <string>
 #include "MSNMembershipEnums.h"
-#include "pugixml.hpp"
 #include "MSNSoapMessages.h"
 #include "XMLStringWriter.h"
+#include "tinyxml2.h"
+#include "StringUtils.h"
 
 class MSNMember {
     private :
@@ -20,7 +21,7 @@ class MSNMember {
 
         bool _isPassportNameHidden = false;
         int _passportId = 0;
-        int _cid;
+        int _cid = 0;
         bool const _lookedupByCID = false;
         bool _isDeleted = false;
 
@@ -80,6 +81,7 @@ class MSNMember {
                 case MSNMembershipListType::Reverse :
                     return "Reverse";
             }
+            return "";
         }
 
         std::string getStateAsString() {
@@ -87,6 +89,7 @@ class MSNMember {
                 case MSNMembershipState::Accepted :
                     return "Accepted";
             }
+            return"";
         }
 
         MSNMembershipState getState(){
@@ -118,25 +121,21 @@ class MSNMember {
         }
 
         std::string serializeXML(){
-            pugi::xml_document doc;
-            doc.load_string(MSNPSoapMessages::AB_FIND_MEMBERSHIP_MEMBER.c_str());
-            auto membershipId = getListTypeAsString() + "\\" + _uid;
             
-            doc.child("Member").child("MembershipId").set_value(membershipId.c_str());
-            doc.child("Member").child("Type").set_value(_type.c_str());
-            doc.child("Member").child("State").set_value(getStateAsString().c_str());
-            doc.child("Member").child("Deleted").set_value(std::to_string(_isDeleted).c_str());
-            doc.child("Member").child("LastChanged").set_value(_lastChanged.c_str());
-            doc.child("Member").child("JoinedDate").set_value(_joinedDate.c_str());
-            doc.child("Member").child("ExpirationDate").set_value(_expirationDate.c_str());
-            doc.child("Member").child("PassportName").set_value(_passportName.c_str());
-            doc.child("Member").child("IsPassportNameHidden").set_value(std::to_string(_isPassportNameHidden).c_str());
-            doc.child("Member").child("PassportId").set_value(std::to_string(_passportId).c_str());
-            doc.child("Member").child("CID").set_value(std::to_string(_cid).c_str());
-            doc.child("Member").child("LookedupByCID").set_value(std::to_string(_lookedupByCID).c_str());
-
-            XMLStringWriter writer;
-            auto test = writer.node_to_string(doc.root());
-            return test;
+            std::string memberXML = MSNPSoapMessages::AB_FIND_MEMBERSHIP_MEMBER;
+            auto membershipId = getListTypeAsString() + "\\" + _uid;
+            StringUtils::replaceAll(memberXML, "%membership_id%", membershipId);
+            StringUtils::replaceAll(memberXML, "%type%", _type);
+            StringUtils::replaceAll(memberXML, "%state%", getStateAsString());
+            StringUtils::replaceAll(memberXML, "%deleted%", std::to_string(_isDeleted));
+            StringUtils::replaceAll(memberXML, "%last_changed%", _lastChanged);
+            StringUtils::replaceAll(memberXML, "%join_date%", _joinedDate);
+            StringUtils::replaceAll(memberXML, "%expiration_date%", _expirationDate);
+            StringUtils::replaceAll(memberXML, "%passport_name%", _passportName);
+            StringUtils::replaceAll(memberXML, "%is_passport_hidden%", std::to_string(_isPassportNameHidden));
+            StringUtils::replaceAll(memberXML, "%passport_id%", std::to_string(_passportId));
+            StringUtils::replaceAll(memberXML, "%cid%", std::to_string(_cid));
+            StringUtils::replaceAll(memberXML, "%looked_up_by_cid%", std::to_string(_lookedupByCID));
+            return memberXML;
         };
 };

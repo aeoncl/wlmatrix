@@ -60,6 +60,9 @@ target_include_directories(${PROJECT_NAME} PUBLIC include)
 
 find_package(cpprestsdk REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE cpprestsdk::cpprest)
+
+find_package(tinyxml2 CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE tinyxml2::tinyxml2)
 #source_group(TREE src PREFIX [FILES <src>...])
 source_group("Header Files" FILES ${INCLUDE_DIRECTORIES})
 set_directory_properties(PROPERTIES VS_STARTUP_PROJECT MSNeo)

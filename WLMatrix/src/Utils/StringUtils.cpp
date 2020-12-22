@@ -1,6 +1,8 @@
 #include "StringUtils.h"
 #include <sstream> 
 #include <string_view>
+#include <boost/algorithm/string/replace.hpp>
+
 
 std::vector<std::string> StringUtils::split(std::string& string, char separator)
 {
@@ -64,4 +66,9 @@ std::string_view StringUtils::rtrim(std::string_view s)
 std::string_view StringUtils::trim(std::string_view s)
 {
     return ltrim(rtrim(s));
+}
+
+void StringUtils::replaceAll(std::string& s, const std::string& toReplace, const std::string& replaceWith)
+{
+	boost::algorithm::replace_all(s, toReplace, replaceWith);
 }

@@ -1,5 +1,6 @@
 #include "MatrixToMSNSoap.h"
 #include "MSNSoapMessages.h"
+#include "MSNMembershipList.h"
 #include <iostream>
 #include "XMLStringWriter.h"
 #include <chrono>
@@ -9,7 +10,7 @@
 #include "CryptoUtils.h"
 #include "MSNUtils.h"
 #include <vector>
-
+#include "tinyxml2.h"
 
 /* RST2 */
 std::string MatrixToMSNSoap::getRST2Response(AuthResponse matrixResponse)
@@ -58,31 +59,31 @@ std::string MatrixToMSNSoap::forgeRST2Token(std::string domain, std::string toke
 
 
 /* ABServices */
-std::string MatrixToMSNSoap::getFindMembershipResponse(SyncResponse matrixResponse) {
-     pugi::xml_document xml;
+std::string MatrixToMSNSoap::getFindMembershipResponse(SyncResponse matrixResponse, std::string msnLogin) {
+    std::string findMembershipXML = MSNPSoapMessages::AB_FIND_MEMBERSHIP_RESPONSE;
 
-        xml.load_string(MSNPSoapMessages::AB_FIND_MEMBERSHIP_RESPONSE.c_str());
-        pugi::xpath_node memberships = xml.child("soap:Envelope").child("soap:Body").child("FindMembershipResponse").child("FindMembershipResult").child("Services").child("Service").child("Memberships");
-        
-        std::vector<MSNMember> allowList;
-        std::vector<MSNMember> reverseList;
-        std::vector<MSNMember> blockList;
-        std::vector<MSNMember> pendingList;
+    MSNMembershipList allowList(MSNMembershipListType::Allow);
+    MSNMembershipList reverseList(MSNMembershipListType::Reverse);
+    MSNMembershipList blockList(MSNMembershipListType::Block);
+    MSNMembershipList pendingList(MSNMembershipListType::Pending);
 
         auto joinedRooms = matrixResponse.getJoinedRooms();
         for(auto joinedRoom : joinedRooms) {
             auto directBuddy = matrixResponse.getDirectBuddy(joinedRoom.getId());
+            MSNMember member;
+
             if(directBuddy != ""){
                 //room is a dm.
-                MSNMember member;
                 member.setUid(CryptoUtils::getMD5uuid(joinedRoom.getId()));
                 member.setState(MSNMembershipState::Accepted);
                 member.setPassportName(MSNUtils::getMSNUriForMatrixUri(directBuddy));
-                allowList.push_back(member);
-
+                member.setJoinedDate("0001-01-01T00:00:00");
+                member.setLastChanged("0001-01-01T00:00:00");
+                member.setExpirationDate("0001-01-01T00:00:00");
+                allowList.addMember(member);
                 if(joinedRoom.containsInvitedMember()) {
-                    //is in reverse too
-                    reverseList.push_back(member);
+                    //is in reverse too.
+                    reverseList.addMember(member);
                 }
 
             }else{
@@ -90,26 +91,18 @@ std::string MatrixToMSNSoap::getFindMembershipResponse(SyncResponse matrixRespon
                 //circles are automatically in reverse.
                 //No circles in memberships.
             }
+
         }
+        StringUtils::replaceAll(findMembershipXML, "%creator_passport_name%", msnLogin);
+        StringUtils::replaceAll(findMembershipXML, "%membership_last_change%", "0001-01-01T00:00:00");
+        StringUtils::replaceAll(findMembershipXML, "%allowlist%", allowList.serializeXML());
+        StringUtils::replaceAll(findMembershipXML, "%reverselist%", reverseList.serializeXML());
+        StringUtils::replaceAll(findMembershipXML, "%blocklist%", blockList.serializeXML());
+        StringUtils::replaceAll(findMembershipXML, "%pendinglist%", pendingList.serializeXML());
 
-        
-        /*headerTimeStamp.node().child("wsu:Created").append_child(pugi::node_pcdata).set_value(todayStr.c_str());
-        headerTimeStamp.node().child("wsu:Expires").append_child(pugi::node_pcdata).set_value(tomorrowStr.c_str());
 
-        pugi::xpath_node headerPuid = rst2Template.child("S:Envelope").child("S:Header").child("psf:pp");
-        headerPuid.node().child("psf:serverInfo").attribute("ServerTime").set_value(todayStr.c_str());
-        headerPuid.node().child("psf:credProperties").find_child_by_attribute("Name", "CID").append_child(pugi::node_pcdata).set_value(matrixResponse.getUserIdAsStr().c_str());
-        headerPuid.node().child("psf:credProperties").find_child_by_attribute("Name", "AuthMembername").append_child(pugi::node_pcdata).set_value(matrixResponse.getUserIdAsStr().c_str());
-        
-        pugi::xpath_node bodyTokenSpace = rst2Template.child("S:Envelope").child("S:Body").child("wst:RequestSecurityTokenResponseCollection");
-        pugi::xml_node token1 = forgeRST2Token("messengerclear.live.com", matrixResponse.getAccessTokenAsStr(), todayStr, tomorrowStr, 1);
-        bodyTokenSpace.node().insert_child_after(pugi::node_element, token1);
-        
-        XMLStringWriter writer;
-        auto test = writer.node_to_string(rst2Template);
+        std::cout << "PRINT TEST FIND MEMBERSHIP : " << findMembershipXML << std::endl;
 
-        std::cout << "TEST: " << test << std::endl;*/
-
-        return "";
+        return findMembershipXML;
 
 };

@@ -1,0 +1,16 @@
+<Member xsi:type="PassportMember">
+    <MembershipId>%membership_id%</MembershipId>
+    <Type>Passport</Type>
+    <State>%state%</State>
+    <Deleted>%deleted%</Deleted>
+    <LastChanged>%last_changed%</LastChanged>
+    <JoinedDate>%join_date%</JoinedDate>
+    <ExpirationDate>%expiration_date%</ExpirationDate>
+    <Changes />
+    <PassportName>%passport_name%</PassportName>
+    <IsPassportNameHidden>%is_passport_hidden%</IsPassportNameHidden>
+    <PassportId>%passport_id%</PassportId>
+    <CID>%cid%</CID>
+    <PassportChanges />
+    <LookedupByCID>false</LookedupByCID>
+</Member>
