@@ -12,7 +12,7 @@ It's stateless.
 ## Current state
 🟢 Client patch to connect to WLMatrix (will create a different repo for that stuff)
 
-🟠 Authentication (from MSN -> Matrix) kinda working, need to clean up implementation to handle error codes. The typical @name:homeserver synthax of matrix cannot work with wlm, i use this special one instead : {name@homeserver-port} when the port is ommited, 443 will be default.
+🟠 Authentication (from MSN -> Matrix) kinda working, need to clean up implementation to handle error codes. The typical @name:homeserver syntax of matrix cannot work with wlm, i use this special one instead : {name@homeserver-port} when the port is ommited, 443 will be default.
 
 🟠 Fetch contact lists (joined rooms & invites) (MSN: /AbServices.asmx/FindMembership & getContactsPaged <-> Matrix: sync endpoint)
 
