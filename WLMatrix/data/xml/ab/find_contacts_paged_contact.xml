@@ -1,0 +1,29 @@
+<Contact>                                               
+    <contactId>%contact_id%</contactId>
+    <contactInfo>
+            <contactType>%contact_type%</contactType>
+            <quickName>%quick_name%</quickName>
+            <passportName>%passport_name%</passportName>
+            <IsPassportNameHidden>%passport_name_hidden%</IsPassportNameHidden>
+            <displayName>%display_name%</displayName>
+            <puid>%puid%</puid>
+            <CID>%cid%</CID>
+            <IsNotMobileVisible>%not_mobile_visible%</IsNotMobileVisible>
+            <isMobileIMEnabled>%mobile_im_enabled%</isMobileIMEnabled>
+            <isMessengerUser>%messenger_user%</isMessengerUser>
+            <isFavorite>%favorite%</isFavorite>
+            <isSmtp>%smtp%</isSmtp>
+            <hasSpace>%hasSpace%</hasSpace>
+            <spotWatchState>%spotwatch_state%</spotWatchState>
+            <birthdate>%birthday%</birthdate>
+            <primaryEmailType>%primary_email_type%</primaryEmailType>
+            <PrimaryLocation>%primary_location%</PrimaryLocation>
+            <PrimaryPhone>%primary_phone%</PrimaryPhone>
+            <IsPrivate>%private%</IsPrivate>
+            <Gender>%gender%</Gender>
+            <TimeZone>%timezone%</TimeZone>
+    </contactInfo>
+    <propertiesChanged />
+    <fDeleted>%deleted%</fDeleted>
+    <lastChange>%last_change%</lastChange>
+</Contact>

@@ -4,6 +4,8 @@
 #include "AuthResponse.h"
 #include "MatrixPresence.h"
 #include "SyncResponse.h"
+#include "WhoAmIResponse.h"
+
 class MatrixBackend {
     private :
         std::string _url;
@@ -14,5 +16,6 @@ class MatrixBackend {
         MatrixBackend(std::string url, std::string token) : _url(url), _token(token){};
 
         AuthResponse authenticate(MatrixCredentials matrixServer);
+        WhoAmIResponse whoami();
         SyncResponse initialSync(std::string timeStamp, MatrixPresence status);
 };

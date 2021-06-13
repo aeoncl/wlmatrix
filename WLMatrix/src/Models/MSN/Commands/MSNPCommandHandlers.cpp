@@ -3,6 +3,9 @@
 #include "StringUtils.h"
 #include "MSNPCommandHandlers.h"
 #include "MatrixCredentials.h"
+#include "RestServiceException.h"
+#include "MatrixBackend.h"
+
 
 std::vector<std::string> MSNPVER::executeCommand(std::string message, std::shared_ptr<ClientInfo> client, int dialectVersion) const {
 	std::vector<std::string> responses;
@@ -50,8 +53,16 @@ std::vector<std::string> MSNPUSR::executeCommand(std::string message, std::share
 	std::vector<std::string> responses;
 
 	auto matches = StringUtils::splitWords(message);
+	auto authType = matches[2];
 	auto phase = matches[3];
 	auto commandOrder = matches[1];
+	auto email = client->getMSNLogin();
+	
+	if(authType == "SHA") {
+		responses.push_back("USR " + commandOrder + " OK " + email + " 1 0\r\n");
+
+	} else if (authType == "SSO") {
+
 	if (phase == "I") {
 		
 		auto connectionString = matches[4];
@@ -65,15 +76,26 @@ std::vector<std::string> MSNPUSR::executeCommand(std::string message, std::share
 		//S phase
 		auto token = matches[4];
 		token = token.substr(2, token.length()-2);
-		client->setMatrixToken(token);
-		auto email = client->getMSNLogin();
-		auto response = "USR " + commandOrder + " OK " + email + " 1 0\r\n";
+
+		std::string response;
+
+		try {
+			MatrixBackend backend(client->getMatrixServerUrl(), token);
+			auto whoAmIResponse = backend.whoami();
+			client->setMatrixToken(token);
+			response = "USR " + commandOrder + " OK " + email + " 1 0\r\n";
+		} catch (RestServiceException &e) {
+			response = "911 " + commandOrder + "\r\n";
+		}
 
 		responses.push_back(response);
 		responses.push_back("SBS 0 null\r\n");//TODO
 		responses.push_back("MSG Hotmail Hotmail 0\r\n");//TODO
 		responses.push_back("UBX 1:" + email + " 0\r\n");//TODO
 	}
+	}
+
+	
 	return responses;
 }
 
@@ -103,6 +125,15 @@ std::vector<std::string> MSNPNG::executeCommand(std::string message, std::shared
 
 std::vector<std::string> MSNCHG::executeCommand(std::string message, std::shared_ptr<ClientInfo> client, int dialectVersion) const {
 	std::vector<std::string> responses{ message+"\r\n" };
+	return responses;
+}
+
+std::vector<std::string> MSNADL::executeCommand(std::string message, std::shared_ptr<ClientInfo> client, int dialectVersion) const {
+	std::vector<std::string> responses;
+	auto matches = StringUtils::splitWords(message);
+	auto commandOrder = matches[1];
+
+	responses.push_back("ADL " + commandOrder + " OK\r\n");
 	return responses;
 }
 

@@ -18,4 +18,3 @@ std::string MSNSoapToMatrix::getMatrixToken(std::string soapRequestBody){
         std::string token = xpathNode.node().child_value();
         return token.substr(2, token.length());
 };
-

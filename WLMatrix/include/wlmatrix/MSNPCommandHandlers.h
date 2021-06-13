@@ -9,6 +9,9 @@ class MSNPVER : public IMSNPCommandHandler {
 class MSNPUSR : public IMSNPCommandHandler {
 	public :
 		std::vector<std::string> executeCommand(std::string message, std::shared_ptr<ClientInfo> client, int dialectVersion) const override;
+	private : 
+		std::string handleSHA(std::string commandOrder, std::string email);
+		std::string handleSSO();
 };
 
 class MSNPCVR : public IMSNPCommandHandler {
@@ -32,6 +35,11 @@ public:
 };
 
 class MSNCHG : public IMSNPCommandHandler {
+public:
+	std::vector<std::string> executeCommand(std::string message, std::shared_ptr<ClientInfo> client, int dialectVersion) const override;
+};
+
+class MSNADL : public IMSNPCommandHandler {
 public:
 	std::vector<std::string> executeCommand(std::string message, std::shared_ptr<ClientInfo> client, int dialectVersion) const override;
 };

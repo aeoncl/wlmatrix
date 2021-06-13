@@ -12,5 +12,7 @@ class StringUtils
 		static std::string_view ltrim(std::string_view s);
 		static std::string_view trim(std::string_view s);
 		static void replaceAll(std::string& s, const std::string& toReplace, const std::string& replaceWith);
+		static std::string parseBoolean(bool b);
+		static std::string toLowerCase(std::string str);
 };
 

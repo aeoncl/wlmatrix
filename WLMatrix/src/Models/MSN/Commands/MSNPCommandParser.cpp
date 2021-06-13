@@ -3,12 +3,6 @@
 #include <regex>
 #include <iostream>
 
-std::vector<MSNPCommand> MSNPCommandParser::parseMessage(std::string message){
-    std::vector<MSNPCommand> out;
-    auto result = splitMessage(message);
-    return out;
-}
-
 bool MSNPCommandParser::hasPayload(std::string command){
     return true;
 }

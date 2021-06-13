@@ -10,7 +10,7 @@ class WinSockSocket : public ISocket {
 		std::atomic_bool _listening;
 		SOCKET _listenSocket;
 		void createSocket();
-		WSADATA* initWinsock();
+		void initWinsock();
 		addrinfo* getAddressInfo();
 		void createSocket(addrinfo* result);
 		void bindSocket(addrinfo* result);

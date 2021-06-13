@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<soap:Header>
+<ServiceHeader xmlns="http://www.msn.com/webservices/AddressBook">
+<Version>15.01.1408.0000</Version>
+<CacheKey>12r1:asR3A7W96sKTsje8YgB0QB5r-Ut2-_MS2VrMRtmnBbL1XalcJLX9GyyKIcFpcrmc30QDGBUe0kfY1DEp1mXGYFjTzyQwd-uu0ZOk2cLFDTNKmR-lHCTb9U07e3_fiUVnoql5DpCkW6MaiBVBeb16YGWjvOdNxFEDD5DhluIEjcTnYvYzCZkZVDB92jSllE2Yw5xEITkbFsjEJNNkA1Ur19diqrI4SkjQ3OIuRg</CacheKey>
+<CacheKeyChanged>true</CacheKeyChanged>
+<PreferredHostName>localhost</PreferredHostName>
+<SessionId>6ea4db40-0f74-4b7b-a067-97264428f0f9</SessionId>
+</ServiceHeader>
+</soap:Header>
+<soap:Body>
+<ABFindContactsPagedResponse xmlns="http://www.msn.com/webservices/AddressBook">
+<ABFindContactsPagedResult>
+<Groups></Groups>
+<Contacts>
+%contacts%
+</Contacts>
+<CircleResult>
+    %circles%
+    <CircleTicket>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;SignedTicket xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ver="1" keyVer="1"&gt;&lt;Data&gt;PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTE2Ij8+DQo8VGlja2V0IHhtbG5zOnhzaT0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEtaW5zdGFuY2UiIHhtbG5zOnhzZD0iaHR0cDovL3d3dy53My5vcmcvMjAwMS9YTUxTY2hlbWEiPg0KICA8VFM+MDAwMC0wMS0wMVQwMDowMDowMDwvVFM+DQogIDxDSUQ+LTc3NzY5ODI1NzkyNzI5Mzc1NzI8L0NJRD4NCjwvVGlja2V0Pg==&lt;/Data&gt;&lt;Sig&gt;SLE8LXFmBW/2nMY9t+lG/7w4APZt3Z5U4nsu3G7KSWSdTEvTt9mt2kdssQaxxjEhy8udrLlC2dFSQXtHI/6mmbHhtaf7wx2WvRb4F1ayv5kZmrp5lJPkEXhdSwzJHlYPZM530Gsr7Md9MW4w67F7ct7i2MhsQyBLXr5nEDLlILHjTNUkbIa31IZJ5Qpwnr7Cj4XLPYOl8Phl6mHSjWdLo/CvohxRnAb/akABRyIhdd4rIvZREYsYhjSyZ/RLc6j0eLF7zkn8jjLKVGkIIFNvcGGnv/9ZtQ4zO5a/OkNB18Pvj6excNHt8zeCXiPomIikZrUOEZ4sshYRAJ7/5k/PAA==&lt;/Sig&gt;&lt;/SignedTicket&gt;</CircleTicket>
+</CircleResult>
+<Ab>
+    <abId>00000000-0000-0000-0000-000000000000</abId>
+    <abInfo>
+        <ownerPuid>0</ownerPuid>
+        <OwnerCID>%owner_cid%</OwnerCID>
+        <ownerEmail>%owner_email%</ownerEmail>
+        <fDefault>%default%</fDefault>
+        <joinedNamespace>%joined_namespace%</joinedNamespace>
+        <IsBot>%bot%</IsBot>
+        <IsParentManaged>%parent_managed%</IsParentManaged>
+        <AccountTierLastChanged>%account_tier_last_changed%</AccountTierLastChanged>
+        <ProfileVersion>%profile_version%</ProfileVersion>
+        <SubscribeExternalPartner>%subscribe_external_partner%</SubscribeExternalPartner>
+        <NotifyExternalPartner>%notify_external_partner%</NotifyExternalPartner>
+        <AddressBookType>%address_book_type%</AddressBookType>
+    </abInfo>
+    <lastChange>%last_change%</lastChange>
+    <DynamicItemLastChanged>%dynamic_item_last_change%</DynamicItemLastChanged>
+    <createDate>%creation_date%</createDate>
+    <propertiesChanged />
+                </Ab>
+            </ABFindContactsPagedResult>
+        </ABFindContactsPagedResponse>
+    </soap:Body>
+</soap:Envelope>

@@ -24,7 +24,10 @@ SyncResponse SyncResponse::deserializeJson(std::string json) {
 
 std::unordered_map<std::string, std::any> SyncResponse::getDirectList() {
         auto test = this->_accountData.getEventByType("m.direct");
-        return test.getContent();
+        if(test.has_value()){
+                return test.value().getContent();
+        }
+        return std::unordered_map<std::string, std::any>();
 }
 
 bool SyncResponse::isRoomDirect(std::string roomId){

@@ -1,6 +1,7 @@
 <Contact>                                               
     <contactId>bc57b0bc-1edb-4566-8d4d-793edc21ad48</contactId>
     <contactInfo>
+        
             <contactType>Regular</contactType>
             <quickName>test@test.fr</quickName>
             <passportName>test@test.fr</passportName>

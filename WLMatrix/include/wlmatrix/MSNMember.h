@@ -14,14 +14,14 @@ class MSNMember {
         std::string _type = "Passport";
 
         /* Datetime */
-        std::string _lastChanged;
-        std::string _joinedDate;
-        std::string _expirationDate;
+        std::string _lastChanged = "2020-11-14T14:18:52Z";
+        std::string _joinedDate = "2020-11-14T14:18:52Z";
+        std::string _expirationDate = "0001-01-01T00:00:00";
         std::string _passportName;
 
         bool _isPassportNameHidden = false;
         int _passportId = 0;
-        int _cid = 0;
+        std::string _cid = "";
         bool const _lookedupByCID = false;
         bool _isDeleted = false;
 
@@ -60,6 +60,10 @@ class MSNMember {
 
         void setIsDeleted(bool isDeleted){
             _isDeleted = isDeleted;
+        }
+
+        void setCid(std::string cid){
+            _cid = cid;
         }
 
         std::string getUid() {
@@ -127,15 +131,15 @@ class MSNMember {
             StringUtils::replaceAll(memberXML, "%membership_id%", membershipId);
             StringUtils::replaceAll(memberXML, "%type%", _type);
             StringUtils::replaceAll(memberXML, "%state%", getStateAsString());
-            StringUtils::replaceAll(memberXML, "%deleted%", std::to_string(_isDeleted));
+            StringUtils::replaceAll(memberXML, "%deleted%", StringUtils::parseBoolean(_isDeleted));
             StringUtils::replaceAll(memberXML, "%last_changed%", _lastChanged);
             StringUtils::replaceAll(memberXML, "%join_date%", _joinedDate);
             StringUtils::replaceAll(memberXML, "%expiration_date%", _expirationDate);
             StringUtils::replaceAll(memberXML, "%passport_name%", _passportName);
-            StringUtils::replaceAll(memberXML, "%is_passport_hidden%", std::to_string(_isPassportNameHidden));
+            StringUtils::replaceAll(memberXML, "%is_passport_hidden%", StringUtils::parseBoolean(_isPassportNameHidden));
             StringUtils::replaceAll(memberXML, "%passport_id%", std::to_string(_passportId));
-            StringUtils::replaceAll(memberXML, "%cid%", std::to_string(_cid));
-            StringUtils::replaceAll(memberXML, "%looked_up_by_cid%", std::to_string(_lookedupByCID));
+            StringUtils::replaceAll(memberXML, "%cid%", _cid);
+            StringUtils::replaceAll(memberXML, "%looked_up_by_cid%", StringUtils::parseBoolean(_lookedupByCID));
             return memberXML;
         };
 };

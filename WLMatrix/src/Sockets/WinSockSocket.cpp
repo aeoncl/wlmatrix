@@ -41,14 +41,13 @@ void WinSockSocket::createSocket() {
 	}
 }
 
-WSADATA* WinSockSocket::initWinsock() {
+void WinSockSocket::initWinsock() {
 	WORD wsVersion = MAKEWORD(2, 2);
 	WSADATA wsaData;
 	int wsStatus = WSAStartup(wsVersion, &wsaData);
 	if (wsStatus != 0) {
 		throw SocketServerException("InitWinSocket - Cannot initialize winsock");
-	}
-	return &wsaData;
+	};
 }
 
 addrinfo* WinSockSocket::getAddressInfo() {

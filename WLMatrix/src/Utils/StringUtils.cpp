@@ -2,7 +2,7 @@
 #include <sstream> 
 #include <string_view>
 #include <boost/algorithm/string/replace.hpp>
-
+#include <boost/algorithm/string.hpp>
 
 std::vector<std::string> StringUtils::split(std::string& string, char separator)
 {
@@ -71,4 +71,18 @@ std::string_view StringUtils::trim(std::string_view s)
 void StringUtils::replaceAll(std::string& s, const std::string& toReplace, const std::string& replaceWith)
 {
 	boost::algorithm::replace_all(s, toReplace, replaceWith);
+}
+
+std::string StringUtils::parseBoolean(bool b)
+{
+    std::stringstream converter;
+    converter << std::boolalpha << b;   // flag boolalpha calls converter.setf(std::ios_base::boolalpha)
+    return converter.str();
+}
+
+
+std::string StringUtils::toLowerCase(std::string str) {
+	std::string copy = str;
+	boost::algorithm::to_lower(copy);
+	return copy;
 }

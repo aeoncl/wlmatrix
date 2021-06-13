@@ -6,6 +6,8 @@ set(MODELS_DIR src/Models)
 set(MATRIX_DIR ${MODELS_DIR}/Matrix)
 set(MATRIX_EVENTS_DIR ${MATRIX_DIR}/Events)
 
+set(DATA_DIR data)
+
 set(MSN_DIR ${MODELS_DIR}/MSN)
 set(MSN_COMMANDS_DIR ${MSN_DIR}/Commands)
 set(MSN_SOAP_DIR ${MSN_DIR}/SOAP)
@@ -15,6 +17,7 @@ set(UTILS_DIR src/Utils)
 set(EXCEPTIONS_DIR src/Exceptions)
 set(XML_DIR src/XML)
 
+add_subdirectory(data)
 
 add_executable(
     ${PROJECT_NAME}
@@ -23,7 +26,7 @@ add_executable(
     ${EXCEPTIONS_DIR}/SocketServerException.cpp
     ${MODELS_DIR}/ClientInfo.cpp
     ${MSN_DIR}/MSNClient.cpp
-    ${MSN_COMMANDS_DIR}/MSNPCommand.cpp
+   # ${MSN_COMMANDS_DIR}/MSNPCommand.cpp
     ${MSN_COMMANDS_DIR}/MSNPCommandHandlerFactory.cpp
     ${MSN_COMMANDS_DIR}/MSNPCommandHandlers.cpp
     ${MSN_SOAP_DIR}/MSNSoapServer.cpp
@@ -37,6 +40,7 @@ add_executable(
     ${MATRIX_DIR}/MatrixCredentials.cpp
     ${MATRIX_DIR}/MatrixAccountData.cpp
     ${MATRIX_DIR}/MatrixJoinedRoom.cpp
+    ${MATRIX_DIR}/WhoAmIResponse.cpp
     ${MATRIX_EVENTS_DIR}/MatrixEvent.cpp
     ${MATRIX_DIR}/AuthResponse.cpp
     ${MATRIX_DIR}/SyncResponse.cpp
@@ -51,18 +55,51 @@ add_executable(
     ${XML_DIR}/pugixml.cpp
     )
 
-target_include_directories(${PROJECT_NAME} PUBLIC include/boost)
-target_include_directories(${PROJECT_NAME} PUBLIC include/wlmatrix)
-target_include_directories(${PROJECT_NAME} PUBLIC include/libmatrix)
-target_include_directories(${PROJECT_NAME} PUBLIC include)
+    
+MACRO(HEADER_DIRECTORIES return_list)
+    FILE(GLOB_RECURSE new_list *.h)
+    FILE(GLOB_RECURSE new_list2 *.hpp)
+    LIST (APPEND new_list ${new_list2})
+    SET(dir_list "")
+    FOREACH(file_path ${new_list})
+        GET_FILENAME_COMPONENT(dir_path ${file_path} PATH)
+        SET(dir_list ${dir_list} ${dir_path})
+    ENDFOREACH()
+    LIST(REMOVE_DUPLICATES dir_list)
+    SET(${return_list} ${dir_list})
+ENDMACRO()
+
+HEADER_DIRECTORIES(testHeaderFolders)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${testHeaderFolders})
+
+#target_include_directories(${PROJECT_NAME} PUBLIC include/boost)
+#target_include_directories(${PROJECT_NAME} PUBLIC include/libmatrix)
+#target_include_directories(${PROJECT_NAME} PUBLIC include)
+#target_include_directories(${PROJECT_NAME} PUBLIC include/wlmatrix)
 
 
 
 find_package(cpprestsdk REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE cpprestsdk::cpprest)
 
+
 find_package(tinyxml2 CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE tinyxml2::tinyxml2)
+
+
+
+#Boost static libs
+add_compile_definitions(BOOST_UUID_RANDOM_PROVIDER_FORCE_WINCRYPT)
+set(Boost_INCLUDE_DIR ${_VCPKG_INSTALLED_DIR}/x86-windows-static/include) 
+set(Boost_USE_STATIC_LIBS ON)
+find_package(Boost COMPONENTS date_time)
+if (Boost_FOUND)
+    include_directories(${Boost_INCLUDE_DIRS})
+    link_directories(${Boost_LIBRARY_DIRS})
+endif ()
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${Boost_LIBRARIES})
+
 #source_group(TREE src PREFIX [FILES <src>...])
 source_group("Header Files" FILES ${INCLUDE_DIRECTORIES})
 set_directory_properties(PROPERTIES VS_STARTUP_PROJECT MSNeo)

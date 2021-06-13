@@ -1,0 +1,4 @@
+SET(DATA_PATH "Debug/data")
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/ppcrl/ppcrlconfig.bin
+     DESTINATION ${CMAKE_BINARY_DIR}/${PROJECT_NAME}/${DATA_PATH}/ppcrl)

@@ -39,7 +39,5 @@ class ClientInfo {
 		std::string getMSNLogin(){
 			return _msnLogin;
 		}
-		
-
 };
 

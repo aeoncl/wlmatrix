@@ -1,6 +1,10 @@
 #include "MSNSoapServer.h"
 #include <functional>
 #include <iostream>
+#include <fstream>
+#include <iterator>
+#include <vector>
+
 #include "MatrixBackend.h"
 #include "AuthResponse.h"
 #include "MSNSoapToMatrix.h"
@@ -8,13 +12,12 @@
 #include "SoapEndpointHandlerFactory.h"
 #include "ISoapEndpointHandler.h"
 
-
 using namespace web;
 using namespace http;
 using namespace experimental;
 using namespace listener;
 /* Constructor */
-MSNSoapServer::MSNSoapServer(ClientInfoRepository* repo)
+MSNSoapServer::MSNSoapServer(ClientInfoRepository *repo)
 {
     _repo = repo;
     http::uri uri(L"http://127.0.0.1:8080");
@@ -63,14 +66,23 @@ void MSNSoapServer::onGetRequestReceveid(http_request request)
     http_response response(200);
     response.set_body("Hi", "text/plain");
 
-    if(requestPath._Starts_with("/config/MsgrConfig.asmx")){
-        std::ifstream ifs("D:\\Aeon\\Documents\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\MsgrConfig_response.xml");
+    if (requestPath._Starts_with("/config/MsgrConfig.asmx"))
+    {
+        std::ifstream ifs("E:\\Nextcloud\\repo\\MSNeo\\WLMatrix\\WLMatrix\\data\\xml\\MsgrConfig_response.xml");
         std::string content((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
         response.set_body(content, "application/soap+xml");
+        ifs.close();
     }
 
-    request.reply(response);
+    if (requestPath._Starts_with("/ppcrlconfig.bin"))
+    {
+        std::ifstream ifs("E:\\Nextcloud\\repo\\MSNeo\\WLMatrix\\WLMatrix\\bin\\WLMatrix\\Debug\\data\\ppcrl\\ppcrlconfig.bin", std::ios::binary);
+        std::vector<unsigned char> buffer(std::istreambuf_iterator<char>(ifs), {});
 
+        response.set_body(buffer);
+        ifs.close();
+    }
+    request.reply(response);
 }
 
 void MSNSoapServer::onPostRequestReceveid(http_request request)
@@ -80,13 +92,14 @@ void MSNSoapServer::onPostRequestReceveid(http_request request)
     auto xmlRequestBody = request.extract_utf8string(true).get();
     auto handler = SoapEndpointHandlerFactory::getHandler(requestPath);
     std::string soapAction;
-    if(request.headers().has(L"SOAPAction")){
+    if (request.headers().has(L"SOAPAction"))
+    {
         soapAction = utility::conversions::to_utf8string(request.headers()[L"SOAPAction"]);
     }
-    std::cout << ">> POST " << requestPath  << " : " << soapAction << std::endl;
+    std::cout << ">> POST " << requestPath << " : " << soapAction << std::endl;
     auto soapResponse = handler->handleRequest(xmlRequestBody, soapAction, _repo);
-    
-    http_response response(soapResponse.getStatusCode());    
+
+    http_response response(soapResponse.getStatusCode());
     response.set_body(soapResponse.getBody(), "application/soap+xml");
     request.reply(response);
 }

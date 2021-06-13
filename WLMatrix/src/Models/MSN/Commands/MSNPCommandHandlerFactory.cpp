@@ -19,5 +19,6 @@ const std::unordered_map<std::string, const IMSNPCommandHandler*> MSNPCommandHan
   {"BLP", new MSNPBLP()},
   {"PNG", new MSNPNG()},
   {"CHG", new MSNCHG()},
+  {"ADL", new MSNADL()},
   {"EMPTY", new MSNPEmpty()}
 };
