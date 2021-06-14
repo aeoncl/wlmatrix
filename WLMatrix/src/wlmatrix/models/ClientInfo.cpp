@@ -12,5 +12,5 @@
         };
 
 		ClientInfo::~ClientInfo(){
-            std::cerr << "ClientInfo Destroyed";
+            std::cout << "ClientInfo Destroyed" << std::endl;
         };

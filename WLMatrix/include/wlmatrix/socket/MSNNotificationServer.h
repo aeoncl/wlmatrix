@@ -4,8 +4,10 @@
 class MSNNotificationServer : public TCPServer {
 	protected:
 		void onClientDisconected(MSNClient* client) {
-			_clientRepo->removeClient(client->getClientInfo());
+			auto clientInfo = client->getClientInfo();
+			_clientRepo->removeClient(clientInfo);
 			delete client;
+			clientInfo.reset();
 		};
 
 		void handleClient(IClientSocket* socket) override {
