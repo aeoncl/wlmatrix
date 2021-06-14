@@ -44,6 +44,7 @@ void ClientInfoRepository::removeClient(std::shared_ptr<ClientInfo> client) {
     auto findResult = std::find(_clients.begin(), _clients.end(), client);
     if (findResult != _clients.end()) {
         //found
+        std::cout << "Removed client from repository." << std::endl;
         _clients.erase(findResult);
     }
 }

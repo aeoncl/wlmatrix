@@ -1,9 +1,12 @@
 #include "WinSockClientSocket.h"
 #include "StringUtils.h"
 #include <iostream>
+#include <thread>
+#include <chrono>
 #pragma comment(lib, "Ws2_32.lib")
 
 WinSockClientSocket::~WinSockClientSocket() {
+    this->_listening.exchange(false);
 	closesocket(this->_socket);
     std::cout << "Destroyed WinsockClientSocket" << std::endl;
 }
@@ -31,6 +34,7 @@ void WinSockClientSocket::receive(std::function<void(std::string)> callback) {
     int recvbuflen = DEFAULT_BUFLEN;
 
     std::string message = "";
+    bool keepListening = true;
     do {
         iResult = recv(this->_socket, recvbuf, recvbuflen, 0);
         if (iResult > 0) {
@@ -44,13 +48,14 @@ void WinSockClientSocket::receive(std::function<void(std::string)> callback) {
         }
         else if (iResult == 0) {
             std::cout << "Client Disconnected...\n";
-            this->_listening.store(false);
+            this->_listening.exchange(false);
+            return;
         }
         else {
             std::cerr << "recv failed :" << WSAGetLastError() << std::endl;
             return;
         }
-    } while (iResult > 0 && isListening());
+    } while (iResult > 0 || (!_listening.compare_exchange_weak(keepListening, false) && keepListening));
 }
 
 std::string WinSockClientSocket::getIpAddress() {
@@ -60,5 +65,5 @@ std::string WinSockClientSocket::getIpAddress() {
 
 bool WinSockClientSocket::isListening()
 {
-    return this->_listening.load();
+    return _listening.load();
 }
