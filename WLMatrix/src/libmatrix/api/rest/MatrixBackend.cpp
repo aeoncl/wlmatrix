@@ -17,6 +17,7 @@ MatrixBackend::MatrixBackend(std::string url, std::string token) : _url(url), _t
 AuthResponse MatrixBackend::authenticate(MatrixCredentials credentials)
 {
     http_client client(to_utf16string(credentials.getUrl()));
+    std::wstring test = credentials.serializeJson();
     auto result = client.request(http::methods::POST, L"/_matrix/client/r0/login", credentials.serializeJson(), L"application/json").get();
     return AuthResponse::deserializeJson(result.extract_utf8string().get());
 }

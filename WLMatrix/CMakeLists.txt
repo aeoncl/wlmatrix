@@ -45,6 +45,8 @@ add_executable(
     ${WLMATRIX_DIR}/utils/DateUtils.cpp
     ${WLMATRIX_DIR}/utils/MSNUtils.cpp
     ${WLMATRIX_DIR}/utils/StringUtils.cpp
+    ${WLMATRIX_DIR}/utils/MacAddressUtils.cpp
+
 
     ${WLMATRIX_DIR}/utils/soap/MatrixToMSNSoap.cpp
     ${WLMATRIX_DIR}/utils/soap/MSNSoapMessages.cpp
