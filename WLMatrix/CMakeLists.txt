@@ -1,58 +1,72 @@
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_property(GLOBAL PROPERTY VCPKG_TARGET_TRIPLET x86-windows)
 
-set(CONTROLLERS_DIR src/Controllers)
-set(MODELS_DIR src/Models)
-set(MATRIX_DIR ${MODELS_DIR}/Matrix)
-set(MATRIX_EVENTS_DIR ${MATRIX_DIR}/Events)
-
-set(DATA_DIR data)
-
-set(MSN_DIR ${MODELS_DIR}/MSN)
-set(MSN_COMMANDS_DIR ${MSN_DIR}/Commands)
-set(MSN_SOAP_DIR ${MSN_DIR}/SOAP)
-set(REPO_DIR src/Repositories)
-set(SOCKETS_DIR src/Sockets)
-set(UTILS_DIR src/Utils)
-set(EXCEPTIONS_DIR src/Exceptions)
-set(XML_DIR src/XML)
+set(LIBMATRIX_DIR src/libmatrix)
+set(WLMATRIX_DIR src/wlmatrix)
 
 add_subdirectory(data)
 
 add_executable(
     ${PROJECT_NAME}
     src/main.cpp
-    ${CONTROLLERS_DIR}/MainController.cpp
-    ${EXCEPTIONS_DIR}/SocketServerException.cpp
-    ${MODELS_DIR}/ClientInfo.cpp
-    ${MSN_DIR}/MSNClient.cpp
-   # ${MSN_COMMANDS_DIR}/MSNPCommand.cpp
-    ${MSN_COMMANDS_DIR}/MSNPCommandHandlerFactory.cpp
-    ${MSN_COMMANDS_DIR}/MSNPCommandHandlers.cpp
-    ${MSN_SOAP_DIR}/MSNSoapServer.cpp
-    ${MSN_DIR}/MSNSwitchboard.cpp
-    ${MSN_COMMANDS_DIR}/MSNPCommandParser.cpp
-    ${MSN_SOAP_DIR}/MSNSoapToMatrix.cpp
-    ${MSN_SOAP_DIR}/MatrixToMSNSoap.cpp
-    ${MSN_SOAP_DIR}/SoapEndpointHandlerFactory.cpp
-    ${MSN_SOAP_DIR}/SoapEndpointHandlers.cpp
-    ${MATRIX_DIR}/MatrixBackend.cpp
-    ${MATRIX_DIR}/MatrixCredentials.cpp
-    ${MATRIX_DIR}/MatrixAccountData.cpp
-    ${MATRIX_DIR}/MatrixJoinedRoom.cpp
-    ${MATRIX_DIR}/WhoAmIResponse.cpp
-    ${MATRIX_EVENTS_DIR}/MatrixEvent.cpp
-    ${MATRIX_DIR}/AuthResponse.cpp
-    ${MATRIX_DIR}/SyncResponse.cpp
-    ${REPO_DIR}/ClientInfoRepository.cpp
-    ${SOCKETS_DIR}/TCPServer.cpp
-    ${SOCKETS_DIR}/WinSockClientSocket.cpp
-    ${SOCKETS_DIR}/WinSockSocket.cpp
-    ${UTILS_DIR}/CryptoUtils.cpp
-    ${UTILS_DIR}/StringUtils.cpp
-    ${UTILS_DIR}/DateUtils.cpp
-    ${UTILS_DIR}/MSNUtils.cpp
-    ${XML_DIR}/pugixml.cpp
+    ${WLMATRIX_DIR}/api/soap/AbstractMSNSoapService.cpp
+    ${WLMATRIX_DIR}/api/soap/MSNSoapServer.cpp
+    ${WLMATRIX_DIR}/api/soap/SoapEndpointHandlerFactory.cpp
+    ${WLMATRIX_DIR}/api/soap/SoapEndpointHandlers.cpp
+    ${WLMATRIX_DIR}/api/soap/SoapResponse.cpp
+
+    ${WLMATRIX_DIR}/controllers/MainController.cpp
+
+    ${WLMATRIX_DIR}/exceptions/SocketServerException.cpp
+
+    ${WLMATRIX_DIR}/models/ClientInfo.cpp
+
+    ${WLMATRIX_DIR}/models/commands/MSNPCommandHandlerFactory.cpp
+    ${WLMATRIX_DIR}/models/commands/MSNPCommandHandlers.cpp
+    ${WLMATRIX_DIR}/models/commands/MSNPCommandParser.cpp
+
+    ${WLMATRIX_DIR}/models/soap/MSNCircle.cpp
+    ${WLMATRIX_DIR}/models/soap/MSNContact.cpp
+    ${WLMATRIX_DIR}/models/soap/MSNContactType.cpp
+    ${WLMATRIX_DIR}/models/soap/MSNMember.cpp
+    ${WLMATRIX_DIR}/models/soap/MSNMembershipList.cpp
+    ${WLMATRIX_DIR}/models/soap/MSNMembershipListType.cpp
+    ${WLMATRIX_DIR}/models/soap/MSNMembershipState.cpp
+
+    ${WLMATRIX_DIR}/repositories/ClientInfoRepository.cpp
+
+    ${WLMATRIX_DIR}/sockets/MSNClient.cpp
+    ${WLMATRIX_DIR}/sockets/MSNSwitchboard.cpp
+    ${WLMATRIX_DIR}/sockets/TCPServer.cpp
+    ${WLMATRIX_DIR}/sockets/WinSockClientSocket.cpp
+    ${WLMATRIX_DIR}/sockets/WinSockSocket.cpp
+
+    ${WLMATRIX_DIR}/utils/CryptoUtils.cpp
+    ${WLMATRIX_DIR}/utils/DateUtils.cpp
+    ${WLMATRIX_DIR}/utils/MSNUtils.cpp
+    ${WLMATRIX_DIR}/utils/StringUtils.cpp
+
+    ${WLMATRIX_DIR}/utils/soap/MatrixToMSNSoap.cpp
+    ${WLMATRIX_DIR}/utils/soap/MSNSoapMessages.cpp
+    ${WLMATRIX_DIR}/utils/soap/MSNSoapToMatrix.cpp
+
+    ${WLMATRIX_DIR}/utils/xml/pugixml.cpp
+
+    ${LIBMATRIX_DIR}/api/rest/AuthResponse.cpp
+    ${LIBMATRIX_DIR}/api/rest/MatrixBackend.cpp
+    ${LIBMATRIX_DIR}/api/rest/SyncResponse.cpp
+    ${LIBMATRIX_DIR}/api/rest/WhoAmIResponse.cpp
+
+    ${LIBMATRIX_DIR}/exceptions/RestServiceException.cpp
+
+    ${LIBMATRIX_DIR}/models/MatrixAccountData.cpp
+    ${LIBMATRIX_DIR}/models/MatrixCredentials.cpp
+    ${LIBMATRIX_DIR}/models/MatrixInvitedRoom.cpp
+    ${LIBMATRIX_DIR}/models/MatrixJoinedRoom.cpp
+    ${LIBMATRIX_DIR}/models/MatrixLeftRoom.cpp
+    ${LIBMATRIX_DIR}/models/MatrixPresence.cpp
+
+    ${LIBMATRIX_DIR}/models/events/MatrixEvent.cpp
     )
 
     
@@ -100,6 +114,4 @@ if (Boost_FOUND)
 endif ()
 target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE ${Boost_LIBRARIES})
 
-#source_group(TREE src PREFIX [FILES <src>...])
-source_group("Header Files" FILES ${INCLUDE_DIRECTORIES})
-set_directory_properties(PROPERTIES VS_STARTUP_PROJECT MSNeo)
+#source_group(TREE 
