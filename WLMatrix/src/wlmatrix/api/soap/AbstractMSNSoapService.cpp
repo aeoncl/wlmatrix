@@ -2,11 +2,11 @@
 #include "AbstractMSNSoapService.h"
 
 /* private */
-bool AbstractMSNSoapService::handlersContainsKey(std::string key)
+bool AbstractMSNSoapService::supportedUrisContains(std::string key)
 {
-    for (auto handler : _handlers)
+    for (auto handler : _supportedUris)
     {
-        if (handler.first._Starts_with(key))
+        if (handler._Starts_with(key))
         {
             return true;
         }
@@ -25,5 +25,5 @@ bool AbstractMSNSoapService::canHandleRequest(http_request request)
         soapAction = utility::conversions::to_utf8string(request.headers()[L"SOAPAction"]);
     }
     requestPath += soapAction;
-    return handlersContainsKey(requestPath);
+    return supportedUrisContains(requestPath);
 }

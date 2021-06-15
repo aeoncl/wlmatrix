@@ -12,6 +12,7 @@ add_executable(
     ${WLMATRIX_DIR}/api/soap/AbstractMSNSoapService.cpp
     ${WLMATRIX_DIR}/api/soap/MSNSoapServer.cpp
     ${WLMATRIX_DIR}/api/soap/SoapEndpointHandlerFactory.cpp
+    ${WLMATRIX_DIR}/api/soap/MSNAuthService.cpp
     ${WLMATRIX_DIR}/api/soap/SoapEndpointHandlers.cpp
     ${WLMATRIX_DIR}/api/soap/SoapResponse.cpp
 

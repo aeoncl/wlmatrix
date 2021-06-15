@@ -2,14 +2,19 @@
 #include "IMSNSoapService.h"
 #include "ISoapEndpointHandler.h"
 #include <string>
-#include <unordered_map>
+#include <vector>
 
 class AbstractMSNSoapService : public IMSNSoapService
 {
+
 private:
-    std::unordered_map<std::string, const ISoapEndpointHandler *> _handlers;
-    bool handlersContainsKey(std::string key);
+    bool supportedUrisContains(std::string uri);
+
+protected : 
+    AbstractMSNSoapService(){};
+    std::vector<std::string> _supportedUris;
 
 public:
-    bool canHandleRequest(http_request request);
+
+    bool canHandleRequest(http_request request) override;
 };

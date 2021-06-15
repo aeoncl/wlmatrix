@@ -87,6 +87,8 @@ void MSNSoapServer::onGetRequestReceveid(http_request request)
 
 void MSNSoapServer::onPostRequestReceveid(http_request request)
 {
+    auto requestUri = utility::conversions::to_utf8string(request.request_uri().to_string());
+
     auto requestPath = utility::conversions::to_utf8string(request.absolute_uri().to_string());
 
     auto xmlRequestBody = request.extract_utf8string(true).get();

@@ -63,6 +63,7 @@ WhoAmIResponse MatrixBackend::whoami()
         req.set_request_uri(L"/_matrix/client/r0/account/whoami");
         req.headers().add(L"Authorization", L"Bearer " + to_utf16string(_token));
         auto result = client.request(req).get();
+        statusCode = result.status_code();
         if (statusCode != 200)
         {
             errorResponse = MatrixErrorResponse::deserializeJson(result.extract_utf16string().get());
@@ -85,7 +86,7 @@ WhoAmIResponse MatrixBackend::whoami()
 }
 
 /**
- * Throws RestServiceException
+ * Throws MatrixRestServiceException
  * */
 SyncResponse MatrixBackend::initialSync(std::string timeStamp, MatrixPresence status)
 {
@@ -98,6 +99,7 @@ SyncResponse MatrixBackend::initialSync(std::string timeStamp, MatrixPresence st
         req.set_request_uri(L"/_matrix/client/r0/sync");
         req.headers().add(L"Authorization", L"Bearer " + to_utf16string(_token));
         auto result = client.request(req).get();
+        statusCode = result.status_code();
         if (statusCode != 200)
         {
             errorResponse = MatrixErrorResponse::deserializeJson(result.extract_utf16string().get());
