@@ -3,8 +3,10 @@
 #include "StringUtils.h"
 #include "MSNPCommandHandlers.h"
 #include "MatrixCredentials.h"
-#include "RestServiceException.h"
+#include "MatrixRestServiceException.h"
 #include "MatrixBackend.h"
+#include "WLMatrixLogin.h"
+#include "StringUtils.h"
 
 
 std::vector<std::string> MSNPVER::executeCommand(std::string message, std::shared_ptr<ClientInfo> client, int dialectVersion) const {
@@ -66,8 +68,8 @@ std::vector<std::string> MSNPUSR::executeCommand(std::string message, std::share
 	if (phase == "I") {
 		
 		auto connectionString = matches[4];
-		MatrixCredentials creds(connectionString);
-		client->setMatrixServerUrl(creds.getUrl());
+		WLMatrixLogin wlmatrixLogin(connectionString);
+		client->setMatrixServerUrl(wlmatrixLogin.getTargetUrl());
 		auto response = "USR " + commandOrder + " SSO S MBI_KEY_OLD LAhAAUzdC+JvuB33nooLSa6Oh0oDFCbKrN57EVTY0Dmca8Reb3C1S1czlP12N8VU\r\n";
 		responses.push_back(response);
 		//responses.push_back("GCF 0 1187\r\n<Policies><Policy type=\"SHIELDS\" checksum=\"D9705A71BA841CB38955822E048970C3\"><config> <shield><cli maj=\"7\" min=\"0\" minbld=\"0\" maxbld=\"9999\" deny=\" \" /></shield> <block></block></config></Policy><Policy type=\"ABCH\" checksum=\"03DC55910A9CB79133F1576221A80346\"><policy><set id=\"push\" service=\"ABCH\" priority=\"200\">      <r id=\"pushstorage\" threshold=\"180000\" />    </set><set id=\"delaysup\" service=\"ABCH\" priority=\"150\">  <r id=\"whatsnew\" threshold=\"1800000\" />  <r id=\"whatsnew_storage_ABCH_delay\" timer=\"1800000\" />  <r id=\"whatsnewt_link\" threshold=\"900000\" trigger=\"QueryActivities\" /></set>  <c id=\"PROFILE_Rampup\">100</c></policy></Policy><Policy type=\"ERRORRESPONSETABLE\" checksum=\"6127EEDCE860F45C1692896F5248AF6F\"><Policy> <Feature type=\"3\" name=\"P2P\">  <Entry hr=\"0x81000398\" action=\"3\"/>  <Entry hr=\"0x82000020\" action=\"3\"/> </Feature> <Feature type=\"4\">  <Entry hr=\"0x81000440\" /> </Feature> <Feature type=\"6\" name=\"TURN\">  <Entry hr=\"0x8007274C\" action=\"3\" />  <Entry hr=\"0x82000020\" action=\"3\" />  <Entry hr=\"0x8007274A\" action=\"3\" /> </Feature></Policy></Policy><Policy type=\"P2P\" checksum=\"815D4F1FF8E39A85F1F97C4B16C45177\"><ObjStr SndDly=\"1\" /></Policy></Policies>\r\n");
@@ -84,7 +86,7 @@ std::vector<std::string> MSNPUSR::executeCommand(std::string message, std::share
 			auto whoAmIResponse = backend.whoami();
 			client->setMatrixToken(token);
 			response = "USR " + commandOrder + " OK " + email + " 1 0\r\n";
-		} catch (RestServiceException &e) {
+		} catch (const MatrixRestServiceException &e) {
 			response = "911 " + commandOrder + "\r\n";
 		}
 

@@ -3,6 +3,8 @@
 #include "CryptoUtils.h"
 #include <iostream>
 #include "MacAddressUtils.h"
+#include "WLMatrixLogin.h"
+#include "StringUtils.h"
 
 MatrixCredentials MSNSoapToMatrix::getMatrixCredentials(std::string soapRST2Request)
 {
@@ -11,18 +13,17 @@ MatrixCredentials MSNSoapToMatrix::getMatrixCredentials(std::string soapRST2Requ
         std::cout << "SOAP RST2 REQUEST" << soapRST2Request << std::endl;
         std::string searchStr = "wsse:UsernameToken/wsse:Username";
         pugi::xpath_node xpathNode = doc.child("s:Envelope").child("s:Header").child("wsse:Security").child("wsse:UsernameToken");
-        std::string login = xpathNode.node().child("wsse:Username").child_value();
+        std::string loginString = xpathNode.node().child("wsse:Username").child_value();
         std::string password = xpathNode.node().child("wsse:Password").child_value();
 
+        WLMatrixLogin wlmatrixLogin(loginString);
+        MatrixCredentials credentials(wlmatrixLogin.getUsername(), StringUtils::convertToWString(password), L"WLMatrix", wlmatrixLogin.getTargetUrl());
+
         auto deviceMacAddr = MacAddressUtils::getMacAddress();
-
-        MatrixCredentials credentials(login, password);
-        credentials.setInitialDeviceDisplayName("WLMatrix");
-
         if (deviceMacAddr.has_value())
         {
                 std::string deviceId = CryptoUtils::getMD5uuid("wlmatrix" + deviceMacAddr.value());
-                credentials.setDeviceId(deviceId);
+                credentials.setDeviceId(StringUtils::convertToWString(deviceId));
         }
         return credentials;
 };

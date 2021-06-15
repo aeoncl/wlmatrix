@@ -8,12 +8,12 @@
 
 class MatrixBackend {
     private :
-        std::string _url;
+        std::wstring _url;
         std::string _token;
-        SyncResponse sync(AuthResponse authData, std::string url, std::string timeStamp, MatrixPresence status);
+        SyncResponse sync(AuthResponse authData, std::wstring url, std::string timeStamp, MatrixPresence status);
     public :
         MatrixBackend();
-        MatrixBackend(std::string url, std::string token);
+        MatrixBackend(std::wstring url, std::string token);
 
         AuthResponse authenticate(MatrixCredentials matrixServer);
         WhoAmIResponse whoami();

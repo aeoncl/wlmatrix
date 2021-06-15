@@ -3,6 +3,9 @@
 #include <string_view>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/algorithm/string.hpp>
+#include <locale>
+#include <codecvt>
+#include <string>
 
 std::vector<std::string> StringUtils::split(std::string& string, char separator)
 {
@@ -85,4 +88,14 @@ std::string StringUtils::toLowerCase(std::string str) {
 	std::string copy = str;
 	boost::algorithm::to_lower(copy);
 	return copy;
+}
+
+std::wstring StringUtils::convertToWString(std::string string) {
+	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+	return converter.from_bytes(string);
+}
+
+std::string StringUtils::convertToString(std::wstring wstring) {
+	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
+	return converter.to_bytes(wstring);
 }

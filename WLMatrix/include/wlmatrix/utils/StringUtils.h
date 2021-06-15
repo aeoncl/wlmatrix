@@ -14,5 +14,7 @@ class StringUtils
 		static void replaceAll(std::string& s, const std::string& toReplace, const std::string& replaceWith);
 		static std::string parseBoolean(bool b);
 		static std::string toLowerCase(std::string str);
+		static std::wstring convertToWString(std::string string);
+		static std::string convertToString(std::wstring wstring);
 };
 

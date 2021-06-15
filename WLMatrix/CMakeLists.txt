@@ -20,6 +20,8 @@ add_executable(
     ${WLMATRIX_DIR}/exceptions/SocketServerException.cpp
 
     ${WLMATRIX_DIR}/models/ClientInfo.cpp
+    ${WLMATRIX_DIR}/models/WLMatrixLogin.cpp
+
 
     ${WLMATRIX_DIR}/models/commands/MSNPCommandHandlerFactory.cpp
     ${WLMATRIX_DIR}/models/commands/MSNPCommandHandlers.cpp
@@ -56,10 +58,11 @@ add_executable(
 
     ${LIBMATRIX_DIR}/api/rest/AuthResponse.cpp
     ${LIBMATRIX_DIR}/api/rest/MatrixBackend.cpp
+    ${LIBMATRIX_DIR}/api/rest/MatrixErrorResponse.cpp
     ${LIBMATRIX_DIR}/api/rest/SyncResponse.cpp
     ${LIBMATRIX_DIR}/api/rest/WhoAmIResponse.cpp
 
-    ${LIBMATRIX_DIR}/exceptions/RestServiceException.cpp
+    ${LIBMATRIX_DIR}/exceptions/MatrixRestServiceException.cpp
 
     ${LIBMATRIX_DIR}/models/MatrixAccountData.cpp
     ${LIBMATRIX_DIR}/models/MatrixCredentials.cpp
@@ -94,16 +97,14 @@ target_include_directories(${PROJECT_NAME} PUBLIC ${testHeaderFolders})
 #target_include_directories(${PROJECT_NAME} PUBLIC include)
 #target_include_directories(${PROJECT_NAME} PUBLIC include/wlmatrix)
 
-
-
 find_package(cpprestsdk REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE cpprestsdk::cpprest)
-
 
 find_package(tinyxml2 CONFIG REQUIRED)
 target_link_libraries(${PROJECT_NAME} PRIVATE tinyxml2::tinyxml2)
 
-
+find_package(magic_enum CONFIG REQUIRED)
+target_link_libraries(${PROJECT_NAME} PRIVATE magic_enum::magic_enum)
 
 #Boost static libs
 add_compile_definitions(BOOST_UUID_RANDOM_PROVIDER_FORCE_WINCRYPT)

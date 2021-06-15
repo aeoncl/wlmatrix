@@ -4,29 +4,21 @@
 
 class MatrixCredentials : public IJsonSerializable {
     private :
-        std::string _username;
-        std::string _password;
-        std::string _serverName;
-        std::string _loginString;
-        std::string _port;
-        std::string _url;
-        std::string _deviceId;
-        std::string _initialDeviceDisplayName;
-        void parseLogin(std::string login);
+        std::wstring _username;
+        std::wstring _password;
+        std::wstring _url;
+        std::wstring _deviceId;
+        std::wstring _initialDeviceDisplayName;
     public :
-        MatrixCredentials(std::string login);
-        MatrixCredentials(std::string login, std::string password);
-        MatrixCredentials(std::string login, std::string password, std::string deviceId);
+        MatrixCredentials(std::wstring username, std::wstring password,std::wstring initialDeviceName, std::wstring url, std::wstring deviceId);
+        MatrixCredentials(std::wstring username, std::wstring password, std::wstring initialDeviceName, std::wstring url);
         MatrixCredentials();
         MatrixCredentials(const MatrixCredentials& obj);
         ~MatrixCredentials();
         std::wstring serializeJson() override;
-        std::string getUrl();
-        std::string getPort();
-        std::string getDeviceId();
-        std::string getInitialDeviceDisplayName();
-        void setDeviceId(std::string deviceId);
-        void setInitialDeviceDisplayName(std::string initDeviceDisplayName);
-        void setLoginString(std::string loginString);
-        std::string getLoginString();
+        std::wstring getUrl();
+        std::wstring getDeviceId();
+        std::wstring getInitialDeviceDisplayName();
+        void setDeviceId(std::wstring deviceId);
+        void setInitialDeviceDisplayName(std::wstring initDeviceDisplayName);
 };

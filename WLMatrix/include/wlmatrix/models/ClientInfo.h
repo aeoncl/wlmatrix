@@ -4,7 +4,7 @@
 class ClientInfo {
 	private :
 		int _msnDialectVersion;
-		std::string _matrixServerUrl;
+		std::wstring _matrixServerUrl;
 		std::string _msnLogin;
 		std::string _matrixToken;
 
@@ -16,11 +16,11 @@ class ClientInfo {
 		int getMSNDialectVersion() { return _msnDialectVersion; };
 		void setMSNDialectVersion(int dialectVersion) { _msnDialectVersion = dialectVersion; };
 
-		void setMatrixServerUrl(std::string url){
+		void setMatrixServerUrl(std::wstring url){
 			_matrixServerUrl = url;
 		};
 
-		std::string getMatrixServerUrl() {
+		std::wstring getMatrixServerUrl() {
 			return _matrixServerUrl;
 		};
 
