@@ -19,7 +19,7 @@ The typical @name:homeserver syntax of matrix cannot work with wlm. This syntax 
 🔴 Everything else
 	
 
-## Dependecies
+## Dependencies
 - cpprestsdk
 - boost libraries
 - magic enum 
