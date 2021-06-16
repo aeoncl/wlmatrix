@@ -3,7 +3,7 @@ A translation layer between MSNP18 and the Matrix Protocol.
 
 ![WLMatrix logo](https://i.imgur.com/62Rx1Fq.png)
 
-## How it will work
+## Description
 WLMatrix is a TCP/Soap server and a Matrix client.
 It translates the commands & requests from Windows Live Messenger to the Matrix Protocol.
 
